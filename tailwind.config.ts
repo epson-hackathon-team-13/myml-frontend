@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        tab: "768px",
+        web: "1201px",
+      },
       fontSize: {
         "12": ["12px", "1.6"],
         "14": ["14px", "1.4"],
