@@ -16,6 +16,7 @@
   "plugins": ["@typescript-eslint/eslint-plugin"],
   "rules": {
     "react/react-in-jsx-scope": "off", //  jsx, tsx 파일에 React를 import하지 않으면 나타나는 에러 off
-    "react/jsx-props-no-spreading": "off" // props spreading하면 나타나는 에러 off
+    "react/jsx-props-no-spreading": "off", // props spreading하면 나타나는 에러 off
+    "react/prop-types": "off" // js를 사용할 경우 PropTypes 규칙을 적용해서 prop runtime error를 방지하거나, ts를 사용하면 된다고 하므로 off / 관련 문서 https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prop-types.md
   }
 }
