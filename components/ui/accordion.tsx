@@ -19,16 +19,11 @@ const AccordionItem = React.forwardRef<
 ));
 AccordionItem.displayName = "AccordionItem";
 
-// custom accordion prop type
-interface CustomAccordionTriggerProps
-  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> {
-  chevronDirection: "left" | "right";
-}
-
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  // React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
-  CustomAccordionTriggerProps
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
+    chevronDirection: "left" | "right";
+  }
 >(({ className, chevronDirection, children, ...props }, ref) => (
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
