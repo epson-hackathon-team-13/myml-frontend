@@ -6,14 +6,9 @@ import cn from "@/lib/utils";
 
 const Breadcrumb = React.forwardRef<
   HTMLElement,
-  React.ComponentPropsWithoutRef<"nav"> & {
-    separator?: React.ReactNode;
-  }
+  React.ComponentPropsWithoutRef<"nav">
 >(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />);
 Breadcrumb.displayName = "Breadcrumb";
-Breadcrumb.defaultProps = {
-  separator: null,
-};
 
 const BreadcrumbList = React.forwardRef<
   HTMLOListElement,
@@ -47,7 +42,7 @@ const BreadcrumbLink = React.forwardRef<
   React.ComponentPropsWithoutRef<"a"> & {
     asChild?: boolean;
   }
->(({ asChild, className, ...props }, ref) => {
+>(({ asChild = false, className, ...props }, ref) => {
   const Comp = asChild ? Slot : "a";
 
   return (
@@ -58,9 +53,6 @@ const BreadcrumbLink = React.forwardRef<
     />
   );
 });
-BreadcrumbLink.defaultProps = {
-  asChild: false,
-};
 
 BreadcrumbLink.displayName = "BreadcrumbLink";
 
@@ -80,10 +72,10 @@ const BreadcrumbPage = React.forwardRef<
 BreadcrumbPage.displayName = "BreadcrumbPage";
 
 function BreadcrumbSeparator({
-  children,
+  children = null,
   className,
   ...props
-}: React.ComponentProps<"li">) {
+}: React.ComponentProps<"li"> & { children?: React.ReactNode }) {
   return (
     <li
       role="presentation"
