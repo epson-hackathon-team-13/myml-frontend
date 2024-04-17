@@ -13,6 +13,8 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "cSpell.words": [
     "acco",
-    "pretendard"
+    "breadcrum",
+    "pretendard",
+    "shadcn"
   ],
 }

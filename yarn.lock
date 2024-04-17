@@ -435,6 +435,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-checkbox@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "@radix-ui/react-checkbox@npm:1.0.4"
+  dependencies:
+    "@babel/runtime": "npm:^7.13.10"
+    "@radix-ui/primitive": "npm:1.0.1"
+    "@radix-ui/react-compose-refs": "npm:1.0.1"
+    "@radix-ui/react-context": "npm:1.0.1"
+    "@radix-ui/react-presence": "npm:1.0.1"
+    "@radix-ui/react-primitive": "npm:1.0.3"
+    "@radix-ui/react-use-controllable-state": "npm:1.0.1"
+    "@radix-ui/react-use-previous": "npm:1.0.1"
+    "@radix-ui/react-use-size": "npm:1.0.1"
+  peerDependencies:
+    "@types/react": "*"
+    "@types/react-dom": "*"
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
+  checksum: 10c0/a4bd259a7e15ad88f72524190ddcc2db0688d439aad954e06d0adf6038b2e17397ed8ae0ea26ab09bf6981f1b9dd883904b2b7e74b307b5c6b1a3765d27fe737
+  languageName: node
+  linkType: hard
+
 "@radix-ui/react-collapsible@npm:1.0.3":
   version: 1.0.3
   resolution: "@radix-ui/react-collapsible@npm:1.0.3"
@@ -863,6 +890,21 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10c0/13cd0c38395c5838bc9a18238020d3bcf67fb340039e6d1cbf438be1b91d64cf6900b78121f3dc9219faeb40dcc7b523ce0f17e4a41631655690e5a30a40886a
+  languageName: node
+  linkType: hard
+
+"@radix-ui/react-use-previous@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@radix-ui/react-use-previous@npm:1.0.1"
+  dependencies:
+    "@babel/runtime": "npm:^7.13.10"
+  peerDependencies:
+    "@types/react": "*"
+    react: ^16.8 || ^17.0 || ^18.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/f5fbc602108668484a4ed506b7842482222d1d03094362e26abb7fdd593eee8794fc47d85b3524fb9d00884801c89a6eefd0bed0971eba1ec189c637b6afd398
   languageName: node
   linkType: hard
 
@@ -1712,6 +1754,7 @@ __metadata:
     "@eslint/js": "npm:^9.0.0"
     "@radix-ui/react-accordion": "npm:^1.1.2"
     "@radix-ui/react-avatar": "npm:^1.0.4"
+    "@radix-ui/react-checkbox": "npm:^1.0.4"
     "@radix-ui/react-dropdown-menu": "npm:^2.0.6"
     "@radix-ui/react-slot": "npm:^1.0.2"
     "@types/node": "npm:^20"
@@ -1723,6 +1766,7 @@ __metadata:
     axios: "npm:^1.6.8"
     class-variance-authority: "npm:^0.7.0"
     clsx: "npm:^2.1.0"
+    date-fns: "npm:^3.6.0"
     eslint: "npm:^8.0.1"
     eslint-config-airbnb: "npm:^19.0.4"
     eslint-config-airbnb-typescript: "npm:^18.0.0"
@@ -1741,6 +1785,7 @@ __metadata:
     postcss: "npm:^8"
     prettier: "npm:^3.2.5"
     react: "npm:^18"
+    react-day-picker: "npm:^8.10.1"
     react-dom: "npm:^18"
     tailwind-merge: "npm:^2.2.2"
     tailwindcss: "npm:^3.3.0"
@@ -1933,6 +1978,13 @@ __metadata:
     es-errors: "npm:^1.3.0"
     is-data-view: "npm:^1.0.1"
   checksum: 10c0/21b0d2e53fd6e20cc4257c873bf6d36d77bd6185624b84076c0a1ddaa757b49aaf076254006341d35568e89f52eecd1ccb1a502cfb620f2beca04f48a6a62a8f
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^3.6.0":
+  version: 3.6.0
+  resolution: "date-fns@npm:3.6.0"
+  checksum: 10c0/0b5fb981590ef2f8e5a3ba6cd6d77faece0ea7f7158948f2eaae7bbb7c80a8f63ae30b01236c2923cf89bb3719c33aeb150c715ea4fe4e86e37dcf06bed42fb6
   languageName: node
   linkType: hard
 
@@ -4482,6 +4534,16 @@ __metadata:
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
   checksum: 10c0/900a93d3cdae3acd7d16f642c29a642aea32c2026446151f0778c62ac089d4b8e6c986811076e1ae180a694cedf077d453a11b58ff0a865629a4f82ab558e102
+  languageName: node
+  linkType: hard
+
+"react-day-picker@npm:^8.10.1":
+  version: 8.10.1
+  resolution: "react-day-picker@npm:8.10.1"
+  peerDependencies:
+    date-fns: ^2.28.0 || ^3.0.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/a0ff28c4b61b3882e6a825b19e5679e2fdf3256cf1be8eb0a0c028949815c1ae5a6561474c2c19d231c010c8e0e0b654d3a322610881e0655abca05a2e03d9df
   languageName: node
   linkType: hard
 
