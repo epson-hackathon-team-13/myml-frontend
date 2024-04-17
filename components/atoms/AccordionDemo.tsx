@@ -5,23 +5,29 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+interface AccordionDemoProps {
+  accordionData: { title: string; content: string }[];
+  chevronDirection: "left" | "right";
+  accoTriggerClass?: string;
+  accoItemClass?: string;
+  accoContentClass?: string;
+}
+
 function AccordionDemo({
   accordionData,
   chevronDirection,
   accoTriggerClass = "",
   accoItemClass = "",
   accoContentClass = "",
-}: {
-  accordionData: { title: string; content: string }[];
-  chevronDirection: "left" | "right";
-  accoTriggerClass?: string;
-  accoItemClass?: string;
-  accoContentClass?: string;
-}) {
+}: AccordionDemoProps) {
   return (
     <Accordion type="single" collapsible className="w-full">
       {accordionData.map((data, i) => (
-        <AccordionItem className={accoItemClass} value={String(i)}>
+        <AccordionItem
+          key={data.title}
+          className={accoItemClass}
+          value={String(i)}
+        >
           <AccordionTrigger
             className={accoTriggerClass}
             chevronDirection={chevronDirection}
@@ -36,9 +42,4 @@ function AccordionDemo({
     </Accordion>
   );
 }
-AccordionDemo.defaultProps = {
-  accoTriggerClass: "",
-  accoItemClass: "",
-  accoContentClass: "",
-};
 export default AccordionDemo;
