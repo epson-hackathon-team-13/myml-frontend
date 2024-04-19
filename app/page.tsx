@@ -6,9 +6,11 @@ export default function Home() {
       <h1 className="mt-0">한다글다글</h1>
       <div className=" mt-[200px] flex gap-20">
         <button type="button">
-          <Link href="/atom">아톰 컴포넌트</Link>
+          <Link href="/atom">Atom Component</Link>
         </button>
-        <button type="button">아톰 컴포넌트</button>
+        <button type="button">
+          <Link href="/molecule">Molecule Component</Link>
+        </button>
         <button type="button">아톰 컴포넌트</button>
       </div>
     </main>
