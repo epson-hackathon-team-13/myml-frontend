@@ -72,13 +72,22 @@ function MoleculePage() {
 
   // 툴팁 컴포넌트 데이터 사용 예시
   const tooltipData: TooltipData[] = [
-    { buttonText: "클릭", tooltipText: "클릭하지 마세요" },
+    {
+      delayDuration: 50,
+      buttonText: "구매",
+      tooltipText: "2,000원 더 구매하면 무료배송",
+    },
+    {
+      delayDuration: 50,
+      buttonText: "클릭",
+      tooltipText: "클릭하지 마세요",
+      isDefaultOpen: true,
+    },
     {
       buttonText: "제출하기",
       tooltipText: "클릭 전 확인하세요.",
       side: "bottom",
     },
-    { buttonText: "구매", tooltipText: "2,000원 더 구매하면 무료배송" },
   ];
   return (
     <div>

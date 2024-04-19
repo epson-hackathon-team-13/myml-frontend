@@ -12,12 +12,14 @@ export type TooltipData = {
   tooltipClass?: string;
   buttonClass?: string;
   side?: "top" | "right" | "bottom" | "left";
+  delayDuration?: number;
+  isDefaultOpen?: boolean;
 };
 
 function TooltipDemo({ tooltipData }: { tooltipData: TooltipData }) {
   return (
-    <TooltipProvider>
-      <Tooltip>
+    <TooltipProvider delayDuration={tooltipData.delayDuration}>
+      <Tooltip defaultOpen={tooltipData.isDefaultOpen}>
         <TooltipTrigger className={tooltipData.buttonClass} asChild>
           <Button variant="outline">{tooltipData.buttonText}</Button>
         </TooltipTrigger>
