@@ -7,6 +7,8 @@ export type InputData = {
   inputClass?: string;
   children?: React.ReactNode;
   readonly?: boolean;
+  value: string;
+  onChangeValue: (data: string) => void;
 };
 
 function InputDemo({ inputData }: { inputData: InputData }) {
@@ -17,6 +19,8 @@ function InputDemo({ inputData }: { inputData: InputData }) {
         className={inputData.inputClass}
         type={inputData.type}
         placeholder={inputData.placeholder}
+        value={inputData.value}
+        onChange={(e) => inputData.onChangeValue(e.target.value)}
       />
       {inputData.children}
     </div>
