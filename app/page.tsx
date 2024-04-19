@@ -11,7 +11,9 @@ export default function Home() {
         <button type="button">
           <Link href="/molecule">Molecule Component</Link>
         </button>
-        <button type="button">아톰 컴포넌트</button>
+        <button type="button">
+          <Link href="/organism">Organism Component</Link>
+        </button>
       </div>
     </main>
   );
