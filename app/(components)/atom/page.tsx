@@ -127,7 +127,7 @@ function AtomPage() {
   const inputData: InputData[] = [
     {
       type: "text",
-      changeHandler: (value: string) =>
+      onChangeValue: (value: string) =>
         setInputValue({ ...inputValue, name: value }),
       placeholder: "이름을 입력해 주세요.",
       value: inputValue.name,
@@ -136,7 +136,7 @@ function AtomPage() {
       inputClass: "relative pr-9",
       type: "password",
       value: inputValue.password,
-      changeHandler: (value: string) =>
+      onChangeValue: (value: string) =>
         setInputValue({ ...inputValue, password: value }),
       placeholder: "비밀번호를 입력해 주세요.",
       children: (
@@ -145,7 +145,7 @@ function AtomPage() {
     },
     {
       type: "text",
-      changeHandler: (value: string) =>
+      onChangeValue: (value: string) =>
         setInputValue({ ...inputValue, logo: value }),
       value: inputValue.logo,
       placeholder: "",
@@ -154,7 +154,7 @@ function AtomPage() {
     },
     {
       inputClass: "relative pr-9",
-      changeHandler: (value: string) =>
+      onChangeValue: (value: string) =>
         setInputValue({ ...inputValue, search: value }),
       type: "text",
       value: inputValue.search,
