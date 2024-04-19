@@ -17,4 +17,5 @@
     "pretendard",
     "shadcn"
   ],
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs"
 }
