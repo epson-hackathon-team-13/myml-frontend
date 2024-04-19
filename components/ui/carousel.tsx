@@ -1,3 +1,8 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable consistent-return */
+/* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable react/require-default-props */
+
 "use client";
 
 import * as React from "react";
@@ -68,13 +73,13 @@ const Carousel = React.forwardRef<
     const [canScrollPrev, setCanScrollPrev] = React.useState(false);
     const [canScrollNext, setCanScrollNext] = React.useState(false);
 
-    const onSelect = React.useCallback((api: CarouselApi) => {
-      if (!api) {
+    const onSelect = React.useCallback((selectApi: CarouselApi) => {
+      if (!selectApi) {
         return;
       }
 
-      setCanScrollPrev(api.canScrollPrev());
-      setCanScrollNext(api.canScrollNext());
+      setCanScrollPrev(selectApi.canScrollPrev());
+      setCanScrollNext(selectApi.canScrollNext());
     }, []);
 
     const scrollPrev = React.useCallback(() => {
@@ -126,6 +131,7 @@ const Carousel = React.forwardRef<
           carouselRef,
           api,
           opts,
+          plugins,
           orientation:
             orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
           scrollPrev,
