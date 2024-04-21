@@ -1,13 +1,13 @@
 {
-  "extends": [  
-  "eslint:recommended",
-  "plugin:react/recommended",
-  "plugin:@typescript-eslint/recommended",
-  "next/core-web-vitals", // next js 기본 설정
-  "airbnb",
-  "airbnb-typescript",
-  "prettier",
-  "plugin:prettier/recommended" // 이 코드가 마지막에 있어야  Prettier와 충돌할 수 있는 ESLint 규칙을 비활성화하며 오버라이딩
+  "extends": [
+    "eslint:recommended", // eslint 기본 권장 규칙
+    "plugin:react/recommended", // react 기본 권장 규칙
+    "plugin:@typescript-eslint/recommended", // eslint-ts 기본 권장 규칙
+    "next/core-web-vitals", // next js 기본 권장 규칙
+    "airbnb", // airbnb 규칙
+    "airbnb-typescript", // airbnb-ts 규칙
+    "prettier",
+    "plugin:prettier/recommended" // 이 코드가 마지막에 있어야  Prettier와 충돌할 수 있는 ESLint 규칙을 비활성화하며 오버라이딩
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
@@ -17,13 +17,16 @@
   "rules": {
     "react/react-in-jsx-scope": "off", //  jsx, tsx 파일에 React를 import하지 않으면 나타나는 에러 off
     "react/jsx-props-no-spreading": "off", // props spreading하면 나타나는 에러 off
-    "react/require-default-props": [2, { "functions" : "defaultArguments" }]// functions의 기본값인 defaultProps의 경우  React 18부터 defaultProps에 대한 사용을 권장하지 않고 있으므로 defaultArguments로 변경하여 사용
+    "react/require-default-props": [2, { "functions": "defaultArguments" }] // functions의 기본값인 defaultProps의 경우  React 18부터 defaultProps에 대한 사용을 권장하지 않고 있으므로 defaultArguments로 변경하여 사용
   },
   "overrides": [
     {
-      "files": ["**/components/ui/*.tsx"], 
+      "files": ["**/components/ui/*.tsx"],
       "rules": {
-        "react/prop-types": [2, { "ignore": ["className","sideOffset","checked"] }]
+        "react/prop-types": [
+          2,
+          { "ignore": ["className", "sideOffset", "checked"] }
+        ]
       }
     }
   ] // shadcn/ui 사용 중 prop-types에러(prop validation 정의가 없음으로 인식됨)로 인하여 shadcn/ui에 한하여 오버라이딩 룰 추가 / 관련 문서 : https://github.com/shadcn-ui/ui/issues/120

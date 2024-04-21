@@ -20,6 +20,7 @@ const useGetCurrentDevice = () => {
 
   if (!width) return null;
 
+  // todo : 상수 처리
   if (width <= 768) {
     return "mob";
   }
