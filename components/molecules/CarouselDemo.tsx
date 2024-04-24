@@ -27,6 +27,7 @@ export type CarouselData = {
     align?: "start" | "end" | "center"; // 캐러샐 루프가 true일때 캐러샐 아이템 정렬 기준 / 기본값 : center
   };
 };
+
 function CarouselDemo({ carouselData }: { carouselData: CarouselData }) {
   return (
     <Carousel
