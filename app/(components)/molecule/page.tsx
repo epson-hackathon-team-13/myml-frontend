@@ -3,7 +3,7 @@
 import CarouselDemo, {
   CarouselData,
 } from "@/components/molecules/CarouselDemo";
-import React from "react";
+import { useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import TooltipDemo, { TooltipData } from "@/components/molecules/TooltipDemo";
 import ToggleGroupDemo, {
@@ -43,6 +43,7 @@ function MoleculePage() {
   const carouselData5: CarouselData = {
     opts: { loop: true },
     itemClass: "basis-1/2",
+    carouselContainerClass: "basis-1/2",
     plugins: [
       Autoplay({
         delay: 2000,
@@ -52,22 +53,18 @@ function MoleculePage() {
   };
 
   // 토글 그룹 컴포넌트 데이터 사용 예시
+  const [selectedToggle, setToggle] = useState<string | string[]>([]);
   const toggleData: ToggleData = {
     groupArray: ["지금 결제", "나중에 결제", "복합 결제"],
     groupType: "single",
     itemClass: "text-20 px-5 py-10 border",
   };
+  const [selectedToggle2, setToggle2] = useState<string | string[]>([]);
   const toggleData2: ToggleData = {
     groupArray: ["토핑 추가", "시럽 추가", "우유 추가"],
     itemClass:
       "text-20 px-5 py-10 border data-[state=on]:bg-blue-300 data-[state=on]:bg-opacity-30 data-[state=off]:text-gray-400",
     groupType: "multiple",
-  };
-  const toggleData3: ToggleData = {
-    groupArray: ["1번", "2번", "3번"],
-    itemClass: "text-20 px-10 py-10 border",
-    groupType: "single",
-    isDisabled: true,
   };
 
   // 툴팁 컴포넌트 데이터 사용 예시
@@ -136,7 +133,11 @@ function MoleculePage() {
             토글 그룹 single.ver
           </p>
           <div>
-            <ToggleGroupDemo toggleData={toggleData} />
+            <ToggleGroupDemo
+              setToggle={setToggle}
+              selectedToggle={selectedToggle}
+              toggleData={toggleData}
+            />
           </div>
         </div>
         <div>
@@ -144,22 +145,19 @@ function MoleculePage() {
             토글 그룹 multiple.ver
           </p>
           <div className="">
-            <ToggleGroupDemo toggleData={toggleData2} />
+            <ToggleGroupDemo
+              toggleData={toggleData2}
+              selectedToggle={selectedToggle2}
+              setToggle={setToggle2}
+            />
           </div>
         </div>
-        <div>
-          <p className="font-bold text-18 border-b py-3 mb-4">
-            토글 그룹 disabled.ver
-          </p>
-          <div className="">
-            <ToggleGroupDemo toggleData={toggleData3} />
-          </div>
-        </div>
+
         <div>
           <p className="font-bold text-18 border-b py-3 mb-4">툴팁</p>
           <div className="my-10 pl-10 flex gap-20">
             {tooltipData.map((tooltip) => (
-              <TooltipDemo tooltipData={tooltip} />
+              <TooltipDemo key={tooltip.buttonText} tooltipData={tooltip} />
             ))}
           </div>
         </div>
