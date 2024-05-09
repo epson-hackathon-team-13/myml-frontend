@@ -1,3 +1,31 @@
+# name: git push into another repo to deploy to vercel
+
+# on:
+#   push:
+#     branches: [main]
+
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: '20'
+
+#       - name: Install dependencies
+#         run: yarn install 
+
+#       - name: Build the project
+#         run: yarn build
+
+#       - name: Prepare output
+#         run: |
+#           mkdir -p output
+          # cp -r .next/* output/
+          
 name: git push into another repo to deploy to vercel
 
 on:
@@ -5,7 +33,7 @@ on:
     branches: [main]
 
 jobs:
-  build-and-deploy:
+ build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -13,18 +41,23 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '20'  
+          cache: 'yarn'  
+
+      - name: Check Yarn Version
+        run: yarn --version 
 
       - name: Install dependencies
-        run: yarn install 
+        run: yarn install --immutable 
 
       - name: Build the project
-        run: yarn build
+        run: yarn build 
 
       - name: Prepare output
         run: |
           mkdir -p output
-          cp -r .next/* output/
+          cp -r .next/* output/  # Adjust according to your deployment needs
+
 
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@main
