@@ -18,7 +18,7 @@ jobs:
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.HANDAGGLE_SECRET_KEY }}
+          API_TOKEN_GITHUB: ${{ secrets.HANDAGGLE_CCA_FE_KEY }}
         with:
           source-directory: 'output'
           destination-github-username: handaggle
