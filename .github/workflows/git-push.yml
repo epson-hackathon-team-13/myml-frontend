@@ -5,17 +5,28 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    container: pandoc/latex
     steps:
       - uses: actions/checkout@v2
-      - name: Install mustache (to update the date)
-        run: apk add ruby && gem install mustache
-      - name: creates output
-        run: sh ./build.sh
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: yarn install 
+
+      - name: Build the project
+        run: yarn build
+
+      - name: Prepare output
+        run: |
+          mkdir -p output
+          cp -r .next/* output/
+
       - name: Pushes to another repository
-        id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.HANDAGGLE_CCA_FE_KEY }}
@@ -24,7 +35,8 @@ jobs:
           destination-github-username: handaggle
           destination-repository-name: cca-fe
           user-email: ${{ secrets.HANDAGGLE_EMAIL }}
-          commit-message: ${{ github.event.commits[0].message }}
+          commit-message: 'Deploying build'
           target-branch: main
-      - name: Test get variable exported by push-to-another-repository
+
+      - name: Echo the output directory
         run: echo $DESTINATION_CLONED_DIRECTORY
