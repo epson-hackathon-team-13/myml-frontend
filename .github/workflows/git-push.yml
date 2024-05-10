@@ -19,23 +19,18 @@ jobs:
       - name: Install Yarn Berry
         run: yarn set version berry
 
-      - name: Install dependencies
-        run: yarn install
-
       - name: Build the project
         run: yarn build  # Adjust according to your project's build command
 
       - name: Prepare output
         run: |
-          mkdir -p output/.yarn/releases
-          cp -R .next/* output/
-          cp .pnp.cjs output/
-          cp .pnp.loader.mjs output/
+          mkdir -p output
+          cp -R .next/* output/  # Next.js 프로젝트의 빌드 폴더 복사
+          cp .pnp.cjs output/    # Yarn Berry PnP 설정 파일 복사
+          cp .pnp.loader.mjs output/  # Yarn Berry PnP 로더 파일 복사
           cp .yarnrc.yml output/
-          cp -R .yarn/releases/* output/.yarn/releases/
-          
+          cp -R .yarn/releases output/.yarn/  # Yarn Berry 실행 파일 복사
       - name: Pushes to another repository
-        id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.HANDAGGLE_CCA_FE_KEY }}
@@ -46,42 +41,3 @@ jobs:
           user-email: ${{ secrets.HANDAGGLE_EMAIL }}
           commit-message: 'Deploy build'
           target-branch: main
-
-# name: git push into another repo to deploy to vercel
-
-# on:
-#   push:
-#     branches: [main]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     container: pandoc/latex
-#     steps:
-#       # - uses: actions/checkout@v2
-#       # - name: Install mustache (to update the date)
-#       #   run: apk add ruby && gem install mustache
-#       # - name: creates output
-#       #   run: sh ./build.sh
-#       - uses: actions/checkout@v2
-#       - name: Install mustache (to update the date)
-#         run: apk add ruby && gem install mustache
-#       # - name: Setup environment
-#         # run: sudo apt-get update && sudo apt-get install -y [necessary packages]
-#       - name: Execute build script
-#         run: sh ./build.sh
-#       - name: Pushes to another repository
-#         id: push_directory
-#         uses: cpina/github-action-push-to-another-repository@main
-#         env:
-#           API_TOKEN_GITHUB: ${{ secrets.HANDAGGLE_CCA_FE_KEY }}
-#         with:
-#           source-directory: 'output'
-#           destination-github-username: handaggle
-#           destination-repository-name: cca-fe
-#           user-email: ${{ secrets.HANDAGGLE_EMAIL }}
-#           commit-message: 'Deploying build'
-#           target-branch: main
-#       - name: Test get variable exported by push-to-another-repository
-#         run: echo $DESTINATION_CLONED_DIRECTORY
-
