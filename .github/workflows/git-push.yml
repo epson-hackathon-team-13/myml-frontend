@@ -52,7 +52,7 @@ jobs:
       # - name: Setup environment
         # run: sudo apt-get update && sudo apt-get install -y [necessary packages]
       - name: Execute build script
-        run: bash ./build.sh
+        run: sh ./build.sh
       - name: Pushes to another repository
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
