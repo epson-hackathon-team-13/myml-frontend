@@ -32,6 +32,7 @@ jobs:
           cp .pnp.cjs output/    # Yarn Berry PnP 설정 파일 복사
           cp .pnp.loader.mjs output/  # Yarn Berry PnP 로더 파일 복사
           cp .yarnrc.yml output/
+          cp -R .yarn/releases output/.yarn/  # Yarn Berry 실행 파일 복사
 
       - name: Pushes to another repository
         id: push_directory
