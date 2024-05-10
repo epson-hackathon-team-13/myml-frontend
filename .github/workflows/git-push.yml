@@ -1,46 +1,3 @@
-# name: git push into another repo to deploy to vercel
-
-# on:
-#   push:
-#     branches: [main]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-
-#       - name: Set up Node.js
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version: '20'
-#           cache: 'yarn'
-
-#       - name: Install Yarn Berry
-#         run: yarn set version berry
-
-#       - name: Build the project
-#         run: yarn build  # Adjust according to your project's build command
-
-#       - name: Prepare output
-#         run: |
-#           mkdir -p output
-#           cp -R .next/* output/  # Next.js 프로젝트의 빌드 폴더 복사
-#           cp .pnp.cjs output/    # Yarn Berry PnP 설정 파일 복사
-#           cp .pnp.loader.mjs output/  # Yarn Berry PnP 로더 파일 복사
-#           cp .yarnrc.yml output/
-#           cp -R .yarn/releases output/.yarn/  # Yarn Berry 실행 파일 복사
-#       - name: Pushes to another repository
-#         uses: cpina/github-action-push-to-another-repository@main
-#         env:
-#           API_TOKEN_GITHUB: ${{ secrets.HANDAGGLE_CCA_FE_KEY }}
-#         with:
-#           source-directory: 'output'
-#           destination-github-username: handaggle
-#           destination-repository-name: cca-fe
-#           user-email: ${{ secrets.HANDAGGLE_EMAIL }}
-#           commit-message: 'Deploy build'
-#           target-branch: main
 
 name: Build and Push to Hobby Account for Deployment
 
@@ -51,6 +8,34 @@ on:
     branches: [main]
 
 jobs:
+  # build-and-push:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout Repository
+  #       uses: actions/checkout@v2
+
+  #     - name: Set up Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '20' 
+  #         cache: 'yarn'
+
+  #     - name: Install Yarn Berry
+  #       run: yarn set version berry
+
+  #     - name: Build the Project
+  #       run: yarn build
+
+  #     - name: Prepare Output
+  #       run: |
+  #         mkdir -p output
+  #         cp -R .next/* output/
+  #         cp .pnp.cjs output/
+  #         cp .pnp.loader.mjs output/
+  #         cp .yarnrc.yml output/
+  #         cp -R .yarn/releases output/.yarn/
+  #         cp -R public output/  # Ensure all static files are also copied if needed
+  #         cp -R pages output/   # Copy other necessary sources if they are required for the build
   build-and-push:
     runs-on: ubuntu-latest
     steps:
@@ -60,25 +45,28 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20' 
+          node-version: '20.11.0'
           cache: 'yarn'
 
       - name: Install Yarn Berry
         run: yarn set version berry
 
+      - name: Restore Yarn Cache
+        run: yarn install 
+
       - name: Build the Project
-        run: yarn build
+        run: yarn build  # 프로젝트 빌드
 
       - name: Prepare Output
         run: |
           mkdir -p output
-          cp -R .next/* output/
-          cp .pnp.cjs output/
-          cp .pnp.loader.mjs output/
+          cp -R .next/* output/  # Next.js 빌드 결과 복사
+          cp .pnp.cjs output/  # Yarn Berry PnP 설정 파일 복사
+          cp .pnp.loader.mjs output/  # Yarn Berry PnP 로더 파일 복사
           cp .yarnrc.yml output/
-          cp -R .yarn/releases output/.yarn/
-          cp -R public output/  # Ensure all static files are also copied if needed
-          cp -R pages output/   # Copy other necessary sources if they are required for the build
+          cp -R .yarn/releases output/.yarn/  # Yarn Berry 실행 파일 복사
+          cp -R public output/  # 필요한 정적 파일 복사
+          cp -R pages output/  # 필요한 소스 파일 복사
 
       - name: Push to Personal Repository
         uses: cpina/github-action-push-to-another-repository@main
