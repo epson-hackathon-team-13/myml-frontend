@@ -31,6 +31,7 @@ jobs:
           cp -R .next/* output/  # Next.js 프로젝트의 빌드 폴더 복사
           cp .pnp.cjs output/    # Yarn Berry PnP 설정 파일 복사
           cp .pnp.loader.mjs output/  # Yarn Berry PnP 로더 파일 복사
+          cp .yarnrc.yml output/
 
       - name: Pushes to another repository
         id: push_directory
