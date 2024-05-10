@@ -65,8 +65,8 @@ jobs:
           cp .pnp.loader.mjs output/  # Yarn Berry PnP 로더 파일 복사
           cp .yarnrc.yml output/
           cp -R .yarn/releases output/.yarn/  # Yarn Berry 실행 파일 복사
-          cp -R public output/  # 필요한 정적 파일 복사
-          cp -R pages output/  # 필요한 소스 파일 복사
+          # cp -R public output/  # 필요한 정적 파일 복사
+          # cp -R pages output/  # 필요한 소스 파일 복사
 
       - name: Push to Personal Repository
         uses: cpina/github-action-push-to-another-repository@main
