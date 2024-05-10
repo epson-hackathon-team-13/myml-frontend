@@ -1,35 +1,3 @@
-# name: git push into another repo to deploy to vercel
-
-# on:
-#   push:
-#     branches: [main]
-
-# jobs:
-#  build-and-deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-
-#       - name: Set up Node.js
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version: '20'  
-#           cache: 'yarn'  
-
-#       - name: Check Yarn Version
-#         run: yarn --version 
-
-#       - name: Install dependencies
-#         run: yarn install --immutable 
-
-#       - name: Build the project
-#         run: yarn build 
-
-#       - name: Prepare output
-#         run: |
-#           mkdir -p output
-#           cp -r .next/* output/  # Adjust according to your deployment needs
-
 name: git push into another repo to deploy to vercel
 
 on:
@@ -39,20 +7,31 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: pandoc/latex
     steps:
-      # - uses: actions/checkout@v2
-      # - name: Install mustache (to update the date)
-      #   run: apk add ruby && gem install mustache
-      # - name: creates output
-      #   run: sh ./build.sh
       - uses: actions/checkout@v2
-      - name: Install mustache (to update the date)
-        run: apk add ruby && gem install mustache
-      # - name: Setup environment
-        # run: sudo apt-get update && sudo apt-get install -y [necessary packages]
-      - name: Execute build script
-        run: sh ./build.sh
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Install Yarn Berry
+        run: yarn set version berry
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build the project
+        run: yarn build  # Adjust according to your project's build command
+
+      - name: Prepare output
+        run: |
+          mkdir -p output
+          cp -R .next/* output/  # Next.js 프로젝트의 빌드 폴더 복사
+          cp .pnp.cjs output/    # Yarn Berry PnP 설정 파일 복사
+          cp .pnp.loader.mjs output/  # Yarn Berry PnP 로더 파일 복사
+
       - name: Pushes to another repository
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
@@ -63,12 +42,10 @@ jobs:
           destination-github-username: handaggle
           destination-repository-name: cca-fe
           user-email: ${{ secrets.HANDAGGLE_EMAIL }}
-          commit-message: 'Deploying build'
+          commit-message: 'Deploy build'
           target-branch: main
-      - name: Test get variable exported by push-to-another-repository
-        run: echo $DESTINATION_CLONED_DIRECTORY
 
-# name: Build and Deploy
+# name: git push into another repo to deploy to vercel
 
 # on:
 #   push:
@@ -77,28 +54,22 @@ jobs:
 # jobs:
 #   build:
 #     runs-on: ubuntu-latest
+#     container: pandoc/latex
 #     steps:
+#       # - uses: actions/checkout@v2
+#       # - name: Install mustache (to update the date)
+#       #   run: apk add ruby && gem install mustache
+#       # - name: creates output
+#       #   run: sh ./build.sh
 #       - uses: actions/checkout@v2
-
-#       - name: Set up Node.js
-#         uses: actions/setup-node@v2
-#         with:
-#           node-version: '20'
-#           cache: 'yarn'
-
-#       - name: Install Yarn Berry
-#         run: yarn set version berry
-
-#       - name: Install dependencies
-#         run: yarn install --immutable
-
-#       - name: Build the project
-#         run: yarn build
-
-#       - name: Execute additional commands
-#         run: yarn dev  # or any other command you need to run
-
+#       - name: Install mustache (to update the date)
+#         run: apk add ruby && gem install mustache
+#       # - name: Setup environment
+#         # run: sudo apt-get update && sudo apt-get install -y [necessary packages]
+#       - name: Execute build script
+#         run: sh ./build.sh
 #       - name: Pushes to another repository
+#         id: push_directory
 #         uses: cpina/github-action-push-to-another-repository@main
 #         env:
 #           API_TOKEN_GITHUB: ${{ secrets.HANDAGGLE_CCA_FE_KEY }}
@@ -109,6 +80,6 @@ jobs:
 #           user-email: ${{ secrets.HANDAGGLE_EMAIL }}
 #           commit-message: 'Deploying build'
 #           target-branch: main
-
-#       - name: Echo the output directory
+#       - name: Test get variable exported by push-to-another-repository
 #         run: echo $DESTINATION_CLONED_DIRECTORY
+
