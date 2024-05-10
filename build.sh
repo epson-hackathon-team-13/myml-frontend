@@ -16,10 +16,5 @@ yarn build # or npm run build
 echo "Running tests..."
 yarn test # or npm run test
 
-# Copy files to the output directory
-echo "Copying files to the output directory..."
-mkdir -p output
-cp -R dist/ output/ # Adjust this line based on where your build artifacts are located
-
 # Any other necessary steps
 # For example, database migrations, cleanup, etc.
