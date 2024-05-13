@@ -4,9 +4,26 @@ import NavigationMenuDemo, {
   NavigationData,
 } from "@/components/organism/NavigationDemo";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+
+function PageName() {
+  const page = useSearchParams().get("page");
+
+  return (
+    <div>
+      {page && (
+        <div className="flex items-center justify-center p-5 border-2 bg-gray-200 rounded-sm">
+          <p>
+            <span className="font-semibold">{page} </span>
+            <span>{` 페이지 입니다.`}</span>
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
 
 function OrganismPage() {
-  const page = useSearchParams().get("page");
   // 네비게이션 데이터 사용 예시
   const navigationData: NavigationData = [
     {
@@ -67,14 +84,17 @@ function OrganismPage() {
         Organism Page
       </h2>
       <div className="p-20 mb-[100px] flex flex-col gap-10 max-w-[1200px] mx-auto">
-        {page && (
+        {/* {page && (
           <div className="flex items-center justify-center p-5 border-2 bg-gray-200 rounded-sm">
             <p>
               <span className="font-semibold">{page} </span>
               <span>{` 페이지 입니다.`}</span>
             </p>
           </div>
-        )}
+        )} */}
+        <Suspense>
+          <PageName />
+        </Suspense>
         <div className="mb-[100px]">
           <p className="font-bold text-18 border-b py-3 mb-4">
             메뉴바 horizontal.ver
