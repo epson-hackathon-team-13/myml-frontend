@@ -3,8 +3,10 @@
 import NavigationMenuDemo, {
   NavigationData,
 } from "@/components/organism/NavigationDemo";
+import { useSearchParams } from "next/navigation";
 
 function OrganismPage() {
+  const page = useSearchParams().get("page");
   // 네비게이션 데이터 사용 예시
   const navigationData: NavigationData = [
     {
@@ -13,15 +15,15 @@ function OrganismPage() {
       content: [
         {
           title: "부가가치세 신고",
-          href: "/",
+          href: "/organism?page=부가가치세",
         },
         {
           title: "종합소득세 신고",
-          href: "/",
+          href: "/organism?page=종합소득세",
         },
         {
           title: "양도소득세 신고",
-          href: "/",
+          href: "/organism?page=양도소득세",
         },
       ],
     },
@@ -31,15 +33,15 @@ function OrganismPage() {
       content: [
         {
           title: "부가가치세 신고",
-          href: "/",
+          href: "/organism?page=부가가치세",
         },
         {
           title: "종합소득세 신고",
-          href: "/",
+          href: "/organism?page=종합소득세",
         },
         {
           title: "양도소득세 신고",
-          href: "/",
+          href: "/organism?page=양도소득세",
         },
       ],
     },
@@ -49,11 +51,11 @@ function OrganismPage() {
       content: [
         {
           title: "세금 납부",
-          href: "/",
+          href: "/organism?page=세금납부",
         },
         {
           title: "납부 내역",
-          href: "/",
+          href: "/organism?page=납부내역",
         },
       ],
     },
@@ -61,8 +63,18 @@ function OrganismPage() {
 
   return (
     <div>
-      <h1 className="px-20 py-10 font-bold text-24">Organism Page</h1>
+      <h2 className="px-20 text-gray-700 py-10 font-bold text-24">
+        Organism Page
+      </h2>
       <div className="p-20 mb-[100px] flex flex-col gap-10 max-w-[1200px] mx-auto">
+        {page && (
+          <div className="flex items-center justify-center p-5 border-2 bg-gray-200 rounded-sm">
+            <p>
+              <span className="font-semibold">{page} </span>
+              <span>{` 페이지 입니다.`}</span>
+            </p>
+          </div>
+        )}
         <div className="mb-[100px]">
           <p className="font-bold text-18 border-b py-3 mb-4">
             메뉴바 horizontal.ver

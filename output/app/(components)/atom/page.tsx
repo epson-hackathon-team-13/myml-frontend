@@ -218,139 +218,129 @@ function AtomPage() {
   };
 
   return (
-    <div>
-      <h1 className="px-20 py-10 font-bold text-24">Atom Page</h1>
-      <div className="p-20 mb-[100px] flex flex-col gap-10 max-w-[1200px] mx-auto">
-        <div>
-          <p className="font-bold text-18 border-b py-3">아코디언 right.ver</p>
-          <AccordionDemo
-            accordionData={accordionData}
-            chevronDirection="right"
+    <div className="px-20 mb-[100px] flex flex-col gap-10 max-w-[1200px] py-10 mx-auto">
+      <h2 className="text-gray-700 py-10 font-bold text-24">Atom Page</h2>
+      <div>
+        <p className="font-bold text-18 border-b py-3">아코디언 right.ver</p>
+        <AccordionDemo accordionData={accordionData} chevronDirection="right" />
+      </div>
+      <div>
+        <p className="font-bold text-18 border-b py-3">아코디언 left.ver</p>
+        <AccordionDemo accordionData={accordionData} chevronDirection="left" />
+      </div>
+      <div>
+        <p className="font-bold text-18 border-b py-3">아바타</p>
+        <div className="flex">
+          <AvatarDemo
+            avatarData={{
+              src: "",
+              alt: "지수 프로필 사진",
+              fallback: "지수",
+            }}
+          />
+          <AvatarDemo
+            avatarClass="w-[100px] h-[100px]"
+            avatarData={{
+              src: "",
+              alt: "지수 프로필 사진",
+              fallback: "지수",
+            }}
+          />
+          <AvatarDemo
+            avatarClass="bg-gray-600"
+            avatarData={{
+              src: "",
+              alt: "지수 프로필 사진",
+              fallback: "지수",
+            }}
           />
         </div>
-        <div>
-          <p className="font-bold text-18 border-b py-3">아코디언 left.ver</p>
-          <AccordionDemo
-            accordionData={accordionData}
-            chevronDirection="left"
+      </div>
+      <div>
+        <p className="font-bold text-18 border-b py-3">뱃지</p>
+        <div className="flex items-start">
+          <Badge className="bg-white border w-[100px] border-gray-300 h-[100px] text-gray-700 hover:bg-gray-300">
+            jisoo
+          </Badge>
+          <Badge className="w-[40px] h-[40px]">jisu</Badge>
+        </div>
+      </div>
+      <div>
+        <p className="font-bold text-18 border-b py-3">브레드 크럼블</p>
+        <div className="flex items-start mt-5">
+          <BreadcrumbDemo
+            currentPath={currentPath}
+            breadcrumData={breadcrumData}
           />
         </div>
-        <div>
-          <p className="font-bold text-18 border-b py-3">아바타</p>
-          <div className="flex">
-            <AvatarDemo
-              avatarData={{
-                src: "",
-                alt: "지수 프로필 사진",
-                fallback: "지수",
-              }}
-            />
-            <AvatarDemo
-              avatarClass="w-[100px] h-[100px]"
-              avatarData={{
-                src: "",
-                alt: "지수 프로필 사진",
-                fallback: "지수",
-              }}
-            />
-            <AvatarDemo
-              avatarClass="bg-gray-600"
-              avatarData={{
-                src: "",
-                alt: "지수 프로필 사진",
-                fallback: "지수",
-              }}
-            />
-          </div>
+      </div>
+      <div>
+        <p className="font-bold text-18 border-b py-3">버튼 text.ver</p>
+        <div className="flex items-start gap-3 mt-5">
+          {buttonData.map((btnData) => (
+            <ButtonDemo buttonData={btnData} />
+          ))}
         </div>
-        <div>
-          <p className="font-bold text-18 border-b py-3">뱃지</p>
-          <div className="flex items-start">
-            <Badge className="bg-white border w-[100px] border-gray-300 h-[100px] text-gray-700 hover:bg-gray-300">
-              jisoo
-            </Badge>
-            <Badge className="w-[40px] h-[40px]">jisu</Badge>
-          </div>
+      </div>
+      <div>
+        <p className="font-bold text-18 border-b py-3">버튼 icon.ver</p>
+        <div className="flex items-start gap-3 mt-5">
+          {buttonData2.map((btnData) => (
+            <ButtonDemo buttonData={btnData} />
+          ))}
         </div>
-        <div>
-          <p className="font-bold text-18 border-b py-3">브레드 크럼블</p>
-          <div className="flex items-start mt-5">
-            <BreadcrumbDemo
-              currentPath={currentPath}
-              breadcrumData={breadcrumData}
-            />
-          </div>
+      </div>
+      <div>
+        <p className="font-bold text-18 border-b py-3 mb-4">
+          캘린더 single.ver
+        </p>
+        <SingleCalendarDemo calendarClass="w-[300px] border shadow-md flex justify-center" />
+      </div>
+      <div>
+        <p className="font-bold text-18 border-b py-3 mb-4">캘린더 range.ver</p>
+        <RangeCalendarDemo calendarClass="w-[300px] border shadow-md flex justify-center" />
+      </div>
+      <div>
+        <p className="font-bold text-18 border-b py-3 mb-4">체크박스</p>
+        <div className="flex gap-3">
+          {checkboxData.map((checkbox) => (
+            <CheckBoxDemo key={checkbox.text} checkBoxData={checkbox} />
+          ))}
         </div>
-        <div>
-          <p className="font-bold text-18 border-b py-3">버튼 text.ver</p>
-          <div className="flex items-start gap-3 mt-5">
-            {buttonData.map((btnData) => (
-              <ButtonDemo buttonData={btnData} />
-            ))}
-          </div>
+      </div>
+      <div>
+        <p className="font-bold text-18 border-b py-3 mb-4">입력창</p>
+        <div className="flex gap-3">
+          {inputData.map((input) => (
+            <InputDemo key={input.placeholder} inputData={input} />
+          ))}
         </div>
-        <div>
-          <p className="font-bold text-18 border-b py-3">버튼 icon.ver</p>
-          <div className="flex items-start gap-3 mt-5">
-            {buttonData2.map((btnData) => (
-              <ButtonDemo buttonData={btnData} />
-            ))}
-          </div>
+      </div>
+      <div>
+        <p className="font-bold text-18 border-b py-3 mb-4">프로그레스 바</p>
+        <div className="flex flex-col gap-3">
+          {progressData.map((data) => (
+            <div className="flex gap-3 items-center">
+              <p className="shrink-0 w-[50px]">{data.progress} %</p>
+              <ProgressDemo key={data.progress} progressData={data} />
+            </div>
+          ))}
         </div>
-        <div>
-          <p className="font-bold text-18 border-b py-3 mb-4">
-            캘린더 single.ver
-          </p>
-          <SingleCalendarDemo calendarClass="w-[300px] border shadow-md flex justify-center" />
+      </div>
+      <div>
+        <p className="font-bold text-18 border-b py-3 mb-4">라디오 체크</p>
+        <div className="flex gap-20">
+          <RadioDemo radioData={radioData} />
+          <RadioDemo radioData={radioData2} />
+          <RadioDemo radioData={radioData3} />
         </div>
-        <div>
-          <p className="font-bold text-18 border-b py-3 mb-4">
-            캘린더 range.ver
-          </p>
-          <RangeCalendarDemo calendarClass="w-[300px] border shadow-md flex justify-center" />
-        </div>
-        <div>
-          <p className="font-bold text-18 border-b py-3 mb-4">체크박스</p>
-          <div className="flex gap-3">
-            {checkboxData.map((checkbox) => (
-              <CheckBoxDemo key={checkbox.text} checkBoxData={checkbox} />
-            ))}
-          </div>
-        </div>
-        <div>
-          <p className="font-bold text-18 border-b py-3 mb-4">입력창</p>
-          <div className="flex gap-3">
-            {inputData.map((input) => (
-              <InputDemo key={input.placeholder} inputData={input} />
-            ))}
-          </div>
-        </div>
-        <div>
-          <p className="font-bold text-18 border-b py-3 mb-4">프로그레스 바</p>
-          <div className="flex flex-col gap-3">
-            {progressData.map((data) => (
-              <div className="flex gap-3 items-center">
-                <p className="shrink-0 w-[50px]">{data.progress} %</p>
-                <ProgressDemo key={data.progress} progressData={data} />
-              </div>
-            ))}
-          </div>
-        </div>
-        <div>
-          <p className="font-bold text-18 border-b py-3 mb-4">라디오 체크</p>
-          <div className="flex gap-20">
-            <RadioDemo radioData={radioData} />
-            <RadioDemo radioData={radioData2} />
-            <RadioDemo radioData={radioData3} />
-          </div>
-        </div>
-        <div className="pb-[100px]">
-          <p className="font-bold text-18 border-b py-3 mb-4">셀렉트 박스</p>
-          <div className="flex gap-20">
-            <SelectDemo selectData={selectData} />
-            <SelectDemo selectData={selectData2} />
-            <SelectDemo selectData={selectData3} />
-          </div>
+      </div>
+      <div className="pb-[100px]">
+        <p className="font-bold text-18 border-b py-3 mb-4">셀렉트 박스</p>
+        <div className="flex gap-20">
+          <SelectDemo selectData={selectData} />
+          <SelectDemo selectData={selectData2} />
+          <SelectDemo selectData={selectData3} />
         </div>
       </div>
     </div>
