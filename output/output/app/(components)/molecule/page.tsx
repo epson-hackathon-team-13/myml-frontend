@@ -88,7 +88,9 @@ function MoleculePage() {
   ];
   return (
     <div>
-      <h1 className="px-20 py-10 font-bold text-24">Molecule Page</h1>
+      <h1 className="px-20 text-gray-700 py-10 font-bold text-24">
+        Molecule Page
+      </h1>
       <div className="p-20 mb-[100px] flex flex-col gap-10 max-w-[1200px] mx-auto">
         <div>
           <p className="font-bold text-18 border-b py-3 mb-4">캐러샐</p>

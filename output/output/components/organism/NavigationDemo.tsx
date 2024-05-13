@@ -76,10 +76,10 @@ function NavigationMenuDemo({
           orientation === "horizontal" ? "" : "flex-col items-start",
         )}
       >
-        {navigationData.map((data) => {
+        {navigationData.map((data, i) => {
           if (data.key === "LINK") {
             return (
-              <NavigationMenuItem key={data.title}>
+              <NavigationMenuItem key={data.title + String(i)}>
                 <Link
                   className={cn(
                     navigationMenuTriggerStyle(),
@@ -94,7 +94,7 @@ function NavigationMenuDemo({
             );
           }
           return (
-            <NavigationMenuItem>
+            <NavigationMenuItem key={data.title + String(i)}>
               <NavigationMenuTrigger>{data.title}</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className={cn("grid w-full gap-3 p-4 ", data.contentClass)}>
