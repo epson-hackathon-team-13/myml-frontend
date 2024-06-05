@@ -29,7 +29,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${inter.className} font-Pretendard`}>{children}</body>
+      <body
+        className={`${inter.className} font-Pretendard max-w-[900px] px-5 min-w-[375px] mx-auto`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
