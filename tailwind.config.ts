@@ -1,6 +1,11 @@
 import type { Config } from "tailwindcss";
 
-const config = {
+import plugin from "tailwindcss/plugin";
+import tailwindcssAnimate from "tailwindcss-animate";
+
+require("tailwindcss/plugin");
+
+export default {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -111,7 +116,81 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    tailwindcssAnimate,
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        ".h1-36-r": {
+          fontSize: "36px",
+          lineHeight: "51.8px",
+          fontWeight: "400",
+        },
+        ".h1-36-b": {
+          fontSize: "36px",
+          lineHeight: "51.8px",
+          fontWeight: "700",
+        },
+        ".h2-28-r": {
+          fontSize: "28px",
+          lineHeight: "39.2px",
+          fontWeight: "400",
+        },
+        ".h2-28-b": {
+          fontSize: "28px",
+          lineHeight: "39.2px",
+          fontWeight: "700",
+        },
+        ".h3-24-r": {
+          fontSize: "24px",
+          lineHeight: "33.6px",
+          fontWeight: "400",
+        },
+        ".h3-24-b": {
+          fontSize: "24px",
+          lineHeight: "33.6px",
+          fontWeight: "700",
+        },
+        ".subtitle-20-r": {
+          fontSize: "20px",
+          lineHeight: "28px",
+          fontWeight: "400",
+        },
+        ".subtitle-20-b": {
+          fontSize: "20px",
+          lineHeight: "28px",
+          fontWeight: "700",
+        },
+        ".body1-16-r": {
+          fontSize: "16px",
+          lineHeight: "22.4px",
+          fontWeight: "400",
+        },
+        ".body1-16-b": {
+          fontSize: "26px",
+          lineHeight: "22.4px",
+          fontWeight: "700",
+        },
+        ".body2-14-r": {
+          fontSize: "14px",
+          lineHeight: "18.9px",
+          fontWeight: "400",
+        },
+        ".body2-14-b": {
+          fontSize: "14px",
+          lineHeight: "18.9px",
+          fontWeight: "700",
+        },
+        ".caption-12-r": {
+          fontSize: "12px",
+          lineHeight: "15.6px",
+          fontWeight: "400",
+        },
+        ".caption-12-b": {
+          fontSize: "12px",
+          lineHeight: "15.6px",
+          fontWeight: "700",
+        },
+      });
+    }),
+  ],
 } satisfies Config;
-
-export default config;

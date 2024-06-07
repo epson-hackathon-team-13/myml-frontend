@@ -1,9 +1,9 @@
 export default function Home() {
   return (
     <main className="flex border min-h-screen relative justify-center flex-col items-center p-24">
-      <div className="flex  flex-col gap-6">
+      <div className="flex flex-col gap-6">
         <p>Color Guide</p>
-        <p className="text-18">Black</p>
+        <p className="text-18 animation">Black</p>
         <div className="flex gap-4">
           <p className="bg-black/80 w-10 h-10" />
           <p className="bg-black/50 w-10 h-10" />
@@ -64,6 +64,13 @@ export default function Home() {
             <p className="bg-success w-10 h-10" />
             <p className="bg-warning w-10 h-10" />
           </div>
+        </div>
+        <p>Typo Guide</p>
+        <div>
+          <p className="h1-36-r">H1/36/Regular</p>
+          <p className="h1-36-b">H1/36/B</p>
+          <p className="h2-28-r">H2/28/R</p>
+          <p className="h2-28-b">H2/28/B</p>
         </div>
       </div>
     </main>
