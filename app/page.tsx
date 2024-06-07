@@ -71,7 +71,6 @@ export default function Home() {
           <p className="h1-36-b">H1/36/B</p>
           <p className="h2-28-r">H2/28/R</p>
           <p className="h2-28-b">H2/28/B</p>
-          <p className="h2-28-b">H2/28/B</p>
         </div>
       </div>
     </main>
