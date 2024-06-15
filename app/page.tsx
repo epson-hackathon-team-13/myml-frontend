@@ -6,7 +6,6 @@ export default function Home() {
       <Button>1</Button>
       <Button disabled>2</Button>
       <Button size={"md"}>3</Button>
-      <Button variant={"outline"}>3</Button>
     </main>
   );
 }
