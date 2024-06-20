@@ -1,10 +1,17 @@
-import { Button } from "@/components/ui/button";
+import Banner from "@/components/home/banner";
+import SlangCard from "@/components/home/slang-card";
+import TodayExpressionCard from "@/components/home/today-expression-card";
+import GlobalNavBar from "@/components/molecules/global-nav-bar";
 
 export default function Home() {
   return (
-    <main className="flex border min-h-screen relative justify-center flex-col items-center p-24">
-      <Button>1</Button>
-      <Button disabled>2</Button>
+    <main className="">
+      <GlobalNavBar />
+      <Banner />
+      <div className="flex mt-2 gap-2">
+        <TodayExpressionCard />
+        <SlangCard />
+      </div>
     </main>
   );
 }

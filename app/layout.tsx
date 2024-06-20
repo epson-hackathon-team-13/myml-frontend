@@ -8,12 +8,12 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.naver.com"), // todo : 실제 도메인 주소
-  title: "오늘묭해!",
-  description: "요늘묭해에서 만나요",
+  metadataBase: new URL("https://www.ballagain.com"),
+  title: "Ball Again",
+  description: "Let's learn korean with your favorite k-pop song!",
   openGraph: {
-    title: "오늘묭해!",
-    description: "요늘묭해에서 만나요",
+    title: "Ball Again",
+    description: "Let's learn korean with your favorite k-pop song!",
     images: ["http://..."], // todo : 실제 이미지 주소
   },
 };
@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="font-Pretendard max-w-[900px] px-5 min-w-[375px] mx-auto">
+      <body className="font-Pretendard max-w-[1200px] px-5 min-w-[375px] mx-auto">
         {children}
       </body>
     </html>

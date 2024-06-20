@@ -13,6 +13,9 @@ const buttonVariants = cva(
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border border-primary text-primary bg-background hover:bg-primary/10 disabled:text-white",
+        "secondary-outline":
+          "border border-2 border-secondary text-primary bg-background hover:bg-secondary disabled:text-white",
+
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
@@ -21,7 +24,7 @@ const buttonVariants = cva(
       size: {
         default: "h-9 px-3 py-[6px] rounded-md",
         md: "h-[52px] py-[14px] px-3 rounded-md px-8",
-        icon: "h-10 w-10",
+        icon: "max-h-max py-1 px-1",
       },
     },
     defaultVariants: {
@@ -36,17 +39,32 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   // eslint-disable-next-line react/require-default-props
   asChild?: boolean;
+  startIcon?: React.ReactNode;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  (
+    {
+      className,
+      startIcon,
+      variant,
+      size,
+      asChild = false,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
-      />
+      >
+        {startIcon && startIcon}
+        {children}
+      </Comp>
     );
   },
 );

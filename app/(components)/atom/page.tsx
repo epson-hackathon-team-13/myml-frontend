@@ -278,7 +278,7 @@ function AtomPage() {
         <p className="font-bold text-18 border-b py-3">버튼 text.ver</p>
         <div className="flex items-start gap-3 mt-5">
           {buttonData.map((btnData) => (
-            <ButtonDemo buttonData={btnData} />
+            <ButtonDemo key={btnData.text} buttonData={btnData} />
           ))}
         </div>
       </div>
@@ -286,7 +286,7 @@ function AtomPage() {
         <p className="font-bold text-18 border-b py-3">버튼 icon.ver</p>
         <div className="flex items-start gap-3 mt-5">
           {buttonData2.map((btnData) => (
-            <ButtonDemo buttonData={btnData} />
+            <ButtonDemo key={btnData.text} buttonData={btnData} />
           ))}
         </div>
       </div>
@@ -319,8 +319,8 @@ function AtomPage() {
       <div>
         <p className="font-bold text-18 border-b py-3 mb-4">프로그레스 바</p>
         <div className="flex flex-col gap-3">
-          {progressData.map((data) => (
-            <div className="flex gap-3 items-center">
+          {progressData.map((data, i) => (
+            <div key={data.progress + i} className="flex gap-3 items-center">
               <p className="shrink-0 w-[50px]">{data.progress} %</p>
               <ProgressDemo key={data.progress} progressData={data} />
             </div>

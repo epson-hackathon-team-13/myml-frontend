@@ -21,6 +21,7 @@ function RadioDemo({ radioData }: { radioData: RadioData }) {
     >
       {radioData.radioGroup.map((radio) => (
         <div
+          key={radio.value}
           id="radioBox"
           className={cn("flex items-center space-x-2", radioData.radioBoxClass)}
         >

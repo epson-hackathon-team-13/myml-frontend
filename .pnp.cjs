@@ -76,6 +76,7 @@ const RAW_RUNTIME_STATE =
           ["react-datepicker", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:6.9.0"],\
           ["react-day-picker", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:8.10.1"],\
           ["react-dom", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:18.2.0"],\
+          ["react-youtube", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:10.1.0"],\
           ["tailwind-merge", "npm:2.2.2"],\
           ["tailwindcss", "npm:3.4.3"],\
           ["tailwindcss-animate", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:1.0.7"],\
@@ -2858,6 +2859,7 @@ const RAW_RUNTIME_STATE =
           ["react-datepicker", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:6.9.0"],\
           ["react-day-picker", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:8.10.1"],\
           ["react-dom", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:18.2.0"],\
+          ["react-youtube", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:10.1.0"],\
           ["tailwind-merge", "npm:2.2.2"],\
           ["tailwindcss", "npm:3.4.3"],\
           ["tailwindcss-animate", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:1.0.7"],\
@@ -3089,6 +3091,13 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["debug", [\
+      ["npm:2.6.9", {\
+        "packageLocation": "./.yarn/cache/debug-npm-2.6.9-7d4cb597dc-121908fb83.zip/node_modules/debug/",\
+        "packageDependencies": [\
+          ["debug", "npm:2.6.9"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
       ["npm:3.2.7", {\
         "packageLocation": "./.yarn/cache/debug-npm-3.2.7-754e818c7a-37d96ae42c.zip/node_modules/debug/",\
         "packageDependencies": [\
@@ -3123,6 +3132,20 @@ const RAW_RUNTIME_STATE =
           ["debug", "virtual:2a426afc4b2eef43db12a540d29c2b5476640459bfcd5c24f86bb401cf8cce97e63bd81794d206a5643057e7f662643afd5ce3dfc4d4bfd8e706006c6309c5fa#npm:3.2.7"],\
           ["@types/supports-color", null],\
           ["ms", "npm:2.1.3"],\
+          ["supports-color", null]\
+        ],\
+        "packagePeers": [\
+          "@types/supports-color",\
+          "supports-color"\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["virtual:f66fa65a7d3b7c04e2875089593b072f584a774d61176560067bcbb045613b8ab746e44893db374f4b21a720d911470a2069cdd9da622ac9a2732665620f57ef#npm:2.6.9", {\
+        "packageLocation": "./.yarn/__virtual__/debug-virtual-043cf600d4/0/cache/debug-npm-2.6.9-7d4cb597dc-121908fb83.zip/node_modules/debug/",\
+        "packageDependencies": [\
+          ["debug", "virtual:f66fa65a7d3b7c04e2875089593b072f584a774d61176560067bcbb045613b8ab746e44893db374f4b21a720d911470a2069cdd9da622ac9a2732665620f57ef#npm:2.6.9"],\
+          ["@types/supports-color", null],\
+          ["ms", "npm:2.0.0"],\
           ["supports-color", null]\
         ],\
         "packagePeers": [\
@@ -5541,6 +5564,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["load-script", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "./.yarn/cache/load-script-npm-1.0.0-32a3163a57-9919c777fe.zip/node_modules/load-script/",\
+        "packageDependencies": [\
+          ["load-script", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["locate-path", [\
       ["npm:6.0.0", {\
         "packageLocation": "./.yarn/cache/locate-path-npm-6.0.0-06a1e4c528-d3972ab70d.zip/node_modules/locate-path/",\
@@ -5801,6 +5833,13 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["ms", [\
+      ["npm:2.0.0", {\
+        "packageLocation": "./.yarn/cache/ms-npm-2.0.0-9e1101a471-f8fda810b3.zip/node_modules/ms/",\
+        "packageDependencies": [\
+          ["ms", "npm:2.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:2.1.2", {\
         "packageLocation": "./.yarn/cache/ms-npm-2.1.2-ec0c1512ff-a437714e2f.zip/node_modules/ms/",\
         "packageDependencies": [\
@@ -6667,6 +6706,31 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["react-youtube", [\
+      ["npm:10.1.0", {\
+        "packageLocation": "./.yarn/cache/react-youtube-npm-10.1.0-57507894ba-a5302e89c4.zip/node_modules/react-youtube/",\
+        "packageDependencies": [\
+          ["react-youtube", "npm:10.1.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:10.1.0", {\
+        "packageLocation": "./.yarn/__virtual__/react-youtube-virtual-aec1660f56/0/cache/react-youtube-npm-10.1.0-57507894ba-a5302e89c4.zip/node_modules/react-youtube/",\
+        "packageDependencies": [\
+          ["react-youtube", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:10.1.0"],\
+          ["@types/react", "npm:18.2.79"],\
+          ["fast-deep-equal", "npm:3.1.3"],\
+          ["prop-types", "npm:15.8.1"],\
+          ["react", "npm:18.2.0"],\
+          ["youtube-player", "npm:5.5.2"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["read-cache", [\
       ["npm:1.0.0", {\
         "packageLocation": "./.yarn/cache/read-cache-npm-1.0.0-00fa89ed05-90cb275021.zip/node_modules/read-cache/",\
@@ -6929,6 +6993,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/signal-exit-npm-4.1.0-61fb957687-41602dce54.zip/node_modules/signal-exit/",\
         "packageDependencies": [\
           ["signal-exit", "npm:4.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["sister", [\
+      ["npm:3.0.2", {\
+        "packageLocation": "./.yarn/cache/sister-npm-3.0.2-bdf9c0b44b-47260b4fd0.zip/node_modules/sister/",\
+        "packageDependencies": [\
+          ["sister", "npm:3.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -7784,6 +7857,18 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/yocto-queue-npm-0.1.0-c6c9a7db29-dceb44c285.zip/node_modules/yocto-queue/",\
         "packageDependencies": [\
           ["yocto-queue", "npm:0.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["youtube-player", [\
+      ["npm:5.5.2", {\
+        "packageLocation": "./.yarn/cache/youtube-player-npm-5.5.2-f66fa65a7d-c098f276d3.zip/node_modules/youtube-player/",\
+        "packageDependencies": [\
+          ["youtube-player", "npm:5.5.2"],\
+          ["debug", "virtual:f66fa65a7d3b7c04e2875089593b072f584a774d61176560067bcbb045613b8ab746e44893db374f4b21a720d911470a2069cdd9da622ac9a2732665620f57ef#npm:2.6.9"],\
+          ["load-script", "npm:1.0.0"],\
+          ["sister", "npm:3.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\

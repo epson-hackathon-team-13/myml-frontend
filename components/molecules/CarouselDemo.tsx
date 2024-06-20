@@ -38,7 +38,10 @@ function CarouselDemo({ carouselData }: { carouselData: CarouselData }) {
     >
       <CarouselContent className={carouselData.contentClass}>
         {carouselData.carouselArr.map((carousel) => (
-          <CarouselItem className={carouselData.itemClass}>
+          <CarouselItem
+            key={carousel.content}
+            className={carouselData.itemClass}
+          >
             <CardContent
               className={cn(
                 "flex items-center justify-center aspect-square border",

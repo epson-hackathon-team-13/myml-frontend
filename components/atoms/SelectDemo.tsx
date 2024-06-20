@@ -42,6 +42,7 @@ function SelectDemo({ selectData }: { selectData: SelectData }) {
           )}
           {selectData.selectItem.map((select) => (
             <SelectItem
+              key={select}
               className={selectData.selectItemClass}
               icon={selectData.icon || null}
               value={select}

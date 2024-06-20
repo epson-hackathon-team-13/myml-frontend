@@ -55,12 +55,11 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* --primary: 222.2 47.4% 11.2%; */
-    --primary: 346 87% 61%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 203 100% 66%;
+    --primary-foreground: 0 0% 100%;
 
-    /* --secondary: 210 40% 96.1%; */
-    --secondary: 274 78% 72%;
+    /* --secondary: 193 100% 91%; */
+    --secondary: 169 38% 85%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
@@ -130,4 +129,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.lyric-shadow {
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
