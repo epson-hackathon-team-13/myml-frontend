@@ -5,6 +5,7 @@ import SongCard from "./song-card";
 const SongListBox = () => {
   const res = useGetSongList();
   if (!res) return;
+
   return (
     <div className="body1-16-r p-5">
       <p className="text-black/60">{`Total (${res.length})`}</p>
