@@ -3,8 +3,6 @@ import type { Config } from "tailwindcss";
 import plugin from "tailwindcss/plugin";
 import tailwindcssAnimate from "tailwindcss-animate";
 
-require("tailwindcss/plugin");
-
 export default {
   darkMode: ["class"],
   content: [
@@ -24,8 +22,7 @@ export default {
     },
     extend: {
       screens: {
-        tab: "768px",
-        web: "1201px",
+        web: "550px",
       },
       fontSize: {
         "12": ["12px", "1.6"],
@@ -114,6 +111,9 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      backgroundImage: {
+        point: "linear-gradient(to right, #F2436D 32%, #DEBFF7 100%)",
+      },
     },
   },
   plugins: [
@@ -166,7 +166,7 @@ export default {
           fontWeight: "400",
         },
         ".body1-16-b": {
-          fontSize: "26px",
+          fontSize: "16px",
           lineHeight: "22.4px",
           fontWeight: "700",
         },
@@ -189,6 +189,20 @@ export default {
           fontSize: "12px",
           lineHeight: "15.6px",
           fontWeight: "700",
+        },
+        ".text-point-md": {
+          background: "linear-gradient(86.42deg, #F2436D 32%, #DEBFF7 50%)",
+          "-webkit-background-clip": "text",
+          "-webkit-text-fill-color": "transparent",
+          "background-clip": "text",
+          "text-fill-color": "transparent",
+        },
+        ".text-point-sm": {
+          background: "linear-gradient(80.42deg, #F2436D 15%, #DEBFF7 50%)",
+          "-webkit-background-clip": "text",
+          "-webkit-text-fill-color": "transparent",
+          "background-clip": "text",
+          "text-fill-color": "transparent",
         },
       });
     }),
