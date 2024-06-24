@@ -1,3 +1,4 @@
+"use client";
 import Banner from "@/components/home/banner";
 import SlangCard from "@/components/home/slang-card";
 import TodayExpressionCard from "@/components/home/today-expression-card";
