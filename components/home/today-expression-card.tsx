@@ -1,32 +1,14 @@
 "use client";
 
 import { Volume2Icon } from "lucide-react";
-
 import { Button } from "../ui/button";
 
+// 음성 속도와 음 높이
 const pitch = 0.9;
 const rate = 0.9;
-// async function populateVoiceList(synth: SpeechSynthesis) {
-//   try {
-//     const voices = await synth.getVoices().sort(function (a, b) {
-//       const aname = a.name.toUpperCase();
-//       const bname = b.name.toUpperCase();
-//       if (aname < bname) return -1;
-//       else if (aname === bname) return 0;
-//       else return +1;
-//     });
 
-//     return voices;
-//   } catch (error) {
-//     throw new Error("Failure retrieving voices");
-//   }
-// }
-
+// 음성 출력 함수
 export async function speak(textToRead: string, synth: SpeechSynthesis) {
-  //   if (speechSynthesis.onvoiceschanged !== undefined) {
-  //     speechSynthesis.onvoiceschanged = () => populateVoiceList;
-  //   }
-
   if (synth.speaking) {
     console.error("speechSynthesis.speaking");
     return;
@@ -44,11 +26,12 @@ export async function speak(textToRead: string, synth: SpeechSynthesis) {
   }
 }
 const TodayExpressionCard = () => {
-  // 문제 소리 듣기 핸들러
+  // 단어 음성 출력 핸들러
   const onClickTTS = (text: string) => {
     speechSynthesis.cancel();
     speak(text, window.speechSynthesis);
   };
+
   return (
     <div className="py-5 bg-[#FFECCC]/50 rounded-md w-[50%] flex flex-col gap-3 px-6 font-medium">
       <p className="text-18 ">Weekly Korean Quiz</p>

@@ -21,7 +21,7 @@ const GlobalNavBar = () => {
         <button onClick={() => router.push("/songs?tab=all")}>
           <PencilIcon className="w-6 h-6" />
         </button>
-        <button>
+        <button onClick={() => router.push("/mypage")}>
           <UserIcon className="w-6 h-6" />
         </button>
       </div>

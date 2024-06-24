@@ -170,7 +170,7 @@ const Video = ({ res }: { res: Song }) => {
               </div>
             </div>
 
-            <div className="flex bg-secondary/10 w-[70%] p-5 h-[300px] overflow-y-auto flex-col text-gray-400 gap-3 border">
+            <div className="flex cursor-pointer bg-secondary/10 w-[70%] p-5 h-[300px] overflow-y-auto flex-col text-gray-400 gap-3 border">
               {lyricValue.timeByLyrics.map((timeByLyric, i) => (
                 <div
                   ref={(el) => {
@@ -181,7 +181,7 @@ const Video = ({ res }: { res: Song }) => {
                     currentTime >= timeByLyric.time &&
                       (i === lyricValue.timeByLyrics.length - 1 ||
                         currentTime < lyricValue.timeByLyrics[i + 1].time)
-                      ? "bg-secondary/20 lyric-shadow rounded-lg py-10 text-black"
+                      ? "bg-white lyric-shadow rounded-lg py-10 text-black"
                       : "",
                     "flex gap-2 items-start justify-center",
                   )}

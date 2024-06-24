@@ -1,6 +1,8 @@
 import { speak } from "@/components/home/today-expression-card";
 import { Button } from "@/components/ui/button";
-import { Volume2Icon } from "lucide-react";
+import { EraserIcon, Volume2Icon } from "lucide-react";
+import { useRef } from "react";
+import SignatureCanvas from "react-signature-canvas";
 
 const QuestionCard = ({
   word,
@@ -9,14 +11,21 @@ const QuestionCard = ({
   word: string;
   res: { transWord: string; transDfn: string };
 }) => {
+  const signRef = useRef<any>();
+
+  // 서명 지우기 핸들러
+  const handleClearSign = () => {
+    signRef.current.clear();
+  };
+
   // 문제 소리 듣기 핸들러
   const onClickTTS = (text: string) => {
     speechSynthesis.cancel();
     speak(text, window.speechSynthesis);
   };
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 mb-10">
+      <div className="flex bg-secondary/20 px-3 py-5 rounded-md flex-col gap-5">
         <p className="bg-secondary rounded-md p-2 body1-16-b max-w-max">
           Speaking 3 times
         </p>
@@ -39,13 +48,69 @@ const QuestionCard = ({
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-5 mb-10">
-        <p className="bg-secondary rounded-md p-2 body1-16-b max-w-max">
-          개발 중인 부분입니다.
+      <div className="flex bg-[#FFECCC]/20 flex-col gap-5 px-3 py-5 rounded-md ">
+        <p className="bg-[#FFECCC] rounded-md p-2 body1-16-b max-w-max">
+          Writing 3 times
         </p>
-        <div className="flex items-center"></div>
+        <div className="flex gap-3 px-3">
+          <div className="flex bg-white relative w-[300px] items-center h-[150px] justify-center">
+            <p className="relative text-[60px] z-100 text-gray-100">{word}</p>
+
+            <SignatureCanvas
+              ref={signRef}
+              canvasProps={{
+                className:
+                  "w-full border border-gray-200 sigCanvas absolute top-0 left-0",
+              }}
+            />
+            <button
+              className="absolute top-0 right-0 mt-3 mr-3"
+              onClick={handleClearSign}
+            >
+              <EraserIcon />
+            </button>
+          </div>
+          <div className="flex bg-white relative w-[300px] items-center h-[150px] justify-center">
+            {/* <p className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] transform text-gray-500 web:hidden"> */}
+            <p className="relative text-[60px] z-100 text-gray-100">{word}</p>
+
+            <SignatureCanvas
+              ref={signRef}
+              canvasProps={{
+                className:
+                  "w-full border border-gray-200 sigCanvas absolute top-0 left-0",
+              }}
+            />
+            <button
+              className="absolute top-0 right-0 mt-3 mr-3"
+              onClick={handleClearSign}
+            >
+              <EraserIcon />
+            </button>
+          </div>
+          <div className="flex bg-white relative w-[300px] items-center h-[150px] justify-center">
+            {/* <p className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] transform text-gray-500 web:hidden"> */}
+            <p className="relative text-[60px] z-100 text-gray-100">{word}</p>
+
+            <SignatureCanvas
+              ref={signRef}
+              canvasProps={{
+                className:
+                  "w-full border border-gray-200 sigCanvas absolute top-0 left-0",
+              }}
+            />
+            <button
+              className="absolute top-0 right-0 mt-3 mr-3"
+              onClick={handleClearSign}
+            >
+              <EraserIcon />
+            </button>
+          </div>
+        </div>
       </div>
-      <Button className="text-black text-16">Add this word to My List</Button>
+      <Button className="bg-primary/90 text-28 text-white ml-auto font-bold max-w-max py-8">
+        Add this word to My List
+      </Button>
     </div>
   );
 };

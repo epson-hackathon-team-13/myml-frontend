@@ -1260,7 +1260,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prop-types@npm:*":
+"@types/prop-types@npm:*, @types/prop-types@npm:^15":
   version: 15.7.12
   resolution: "@types/prop-types@npm:15.7.12"
   checksum: 10c0/1babcc7db6a1177779f8fde0ccc78d64d459906e6ef69a4ed4dd6339c920c2e05b074ee5a92120fe4e9d9f1a01c952f843ebd550bee2332fc2ef81d1706878f8
@@ -1284,6 +1284,16 @@ __metadata:
   dependencies:
     "@types/react": "npm:*"
   checksum: 10c0/9ec38e5ab4727c56ef17bd8e938ead88748ba19db314b8d9807714a5cae430f5b799514667b221b4f2dc8d9b4ca17dd1c3da8c41c083c2de9eddcc31bec6b8ff
+  languageName: node
+  linkType: hard
+
+"@types/react-signature-canvas@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "@types/react-signature-canvas@npm:1.0.5"
+  dependencies:
+    "@types/react": "npm:*"
+    "@types/signature_pad": "npm:*"
+  checksum: 10c0/fd01a4acd2f30e0109d231b4e7b17529a254d37dfaba54205c4edb7f779588a82939717adbac3edf880bdc866c8ad9f0491aa1a5e7d4275b89aec6ddc2da1d5d
   languageName: node
   linkType: hard
 
@@ -1311,6 +1321,13 @@ __metadata:
   version: 7.5.8
   resolution: "@types/semver@npm:7.5.8"
   checksum: 10c0/8663ff927234d1c5fcc04b33062cb2b9fcfbe0f5f351ed26c4d1e1581657deebd506b41ff7fdf89e787e3d33ce05854bc01686379b89e9c49b564c4cfa988efa
+  languageName: node
+  linkType: hard
+
+"@types/signature_pad@npm:*":
+  version: 2.3.6
+  resolution: "@types/signature_pad@npm:2.3.6"
+  checksum: 10c0/67bd91a078c90b51a7e0b4b75f306bf8e1ffccc7b20bd097902d4fb299953fc513981a1444c09d9a9a890fd04c624c3f6599b9d64f5cd39cc663cb3354f7e478
   languageName: node
   linkType: hard
 
@@ -1908,6 +1925,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"base64-arraybuffer@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "base64-arraybuffer@npm:1.0.2"
+  checksum: 10c0/3acac95c70f9406e87a41073558ba85b6be9dbffb013a3d2a710e3f2d534d506c911847d5d9be4de458af6362c676de0a5c4c2d7bdf4def502d00b313368e72f
+  languageName: node
+  linkType: hard
+
 "binary-extensions@npm:^2.0.0":
   version: 2.3.0
   resolution: "binary-extensions@npm:2.3.0"
@@ -2057,9 +2081,11 @@ __metadata:
     "@radix-ui/react-tooltip": "npm:^1.0.7"
     "@types/js-cookie": "npm:^3"
     "@types/node": "npm:^20"
+    "@types/prop-types": "npm:^15"
     "@types/react": "npm:^18.2.79"
     "@types/react-datepicker": "npm:^6"
     "@types/react-dom": "npm:^18"
+    "@types/react-signature-canvas": "npm:^1.0.5"
     "@types/uuid": "npm:^10"
     "@typescript-eslint/eslint-plugin": "npm:^6.4.0"
     "@typescript-eslint/parser": "npm:^7.6.0"
@@ -2083,15 +2109,18 @@ __metadata:
     eslint-plugin-react: "npm:^7.34.1"
     eslint-plugin-react-hooks: "npm:^4.6.0"
     globals: "npm:^15.0.0"
+    html2canvas: "npm:^1.4.1"
     js-cookie: "npm:^3.0.5"
     lucide-react: "npm:^0.368.0"
     next: "npm:14.1.4"
     postcss: "npm:^8"
     prettier: "npm:^3.2.5"
+    prop-types: "npm:^15.8.1"
     react: "npm:^18"
     react-datepicker: "npm:^6.9.0"
     react-day-picker: "npm:^8.10.1"
     react-dom: "npm:^18"
+    react-signature-canvas: "npm:^1.0.6"
     react-youtube: "npm:^10.1.0"
     tailwind-merge: "npm:^2.2.2"
     tailwindcss: "npm:^3.3.0"
@@ -2229,6 +2258,15 @@ __metadata:
     shebang-command: "npm:^2.0.0"
     which: "npm:^2.0.1"
   checksum: 10c0/5738c312387081c98d69c98e105b6327b069197f864a60593245d64c8089c8a0a744e16349281210d56835bb9274130d825a78b2ad6853ca13cfbeffc0c31750
+  languageName: node
+  linkType: hard
+
+"css-line-break@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "css-line-break@npm:2.1.0"
+  dependencies:
+    utrie: "npm:^1.0.2"
+  checksum: 10c0/b2222d99d5daf7861ecddc050244fdce296fad74b000dcff6bdfb1eb16dc2ef0b9ffe2c1c965e3239bd05ebe9eadb6d5438a91592fa8648d27a338e827cf9048
   languageName: node
   linkType: hard
 
@@ -3551,6 +3589,16 @@ __metadata:
   dependencies:
     function-bind: "npm:^1.1.2"
   checksum: 10c0/3769d434703b8ac66b209a4cca0737519925bbdb61dd887f93a16372b14694c63ff4e797686d87c90f08168e81082248b9b028bad60d4da9e0d1148766f56eb9
+  languageName: node
+  linkType: hard
+
+"html2canvas@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "html2canvas@npm:1.4.1"
+  dependencies:
+    css-line-break: "npm:^2.1.0"
+    text-segmentation: "npm:^1.0.3"
+  checksum: 10c0/6de86f75762b00948edf2ea559f16da0a1ec3facc4a8a7d3f35fcec59bb0c5970463478988ae3d9082152e0173690d46ebf4082e7ac803dd4817bae1d355c0db
   languageName: node
   linkType: hard
 
@@ -5001,6 +5049,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-signature-canvas@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "react-signature-canvas@npm:1.0.6"
+  dependencies:
+    signature_pad: "npm:^2.3.2"
+    trim-canvas: "npm:^0.1.0"
+  peerDependencies:
+    prop-types: ^15.5.8
+    react: 0.14 - 18
+    react-dom: 0.14 - 18
+  checksum: 10c0/614e11352c0a8a1235db0d12f6705b0cf1eee556cec27892869bc5c311797ad1d457f01e9714384963f324820f15a44dbfcb5ea9a16d129028ea91598c9b16d5
+  languageName: node
+  linkType: hard
+
 "react-style-singleton@npm:^2.2.1":
   version: 2.2.1
   resolution: "react-style-singleton@npm:2.2.1"
@@ -5309,6 +5371,13 @@ __metadata:
   version: 4.1.0
   resolution: "signal-exit@npm:4.1.0"
   checksum: 10c0/41602dce540e46d599edba9d9860193398d135f7ff72cab629db5171516cfae628d21e7bfccde1bbfdf11c48726bc2a6d1a8fb8701125852fbfda7cf19c6aa83
+  languageName: node
+  linkType: hard
+
+"signature_pad@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "signature_pad@npm:2.3.2"
+  checksum: 10c0/ab888873b294f76757a44f60614974cb9f3d34cdd51b464206ee59cb115b3f0219d8c04943a2d53ef8a49b5b1170502e930f2a8544b668e08f211eeb80112d6a
   languageName: node
   linkType: hard
 
@@ -5631,6 +5700,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"text-segmentation@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "text-segmentation@npm:1.0.3"
+  dependencies:
+    utrie: "npm:^1.0.2"
+  checksum: 10c0/8b9ae8524e3a332371060d0ca62f10ad49a13e954719ea689a6c3a8b8c15c8a56365ede2bb91c322fb0d44b6533785f0da603e066b7554d052999967fb72d600
+  languageName: node
+  linkType: hard
+
 "text-table@npm:^0.2.0":
   version: 0.2.0
   resolution: "text-table@npm:0.2.0"
@@ -5662,6 +5740,13 @@ __metadata:
   dependencies:
     is-number: "npm:^7.0.0"
   checksum: 10c0/487988b0a19c654ff3e1961b87f471702e708fa8a8dd02a298ef16da7206692e8552a0250e8b3e8759270f62e9d8314616f6da274734d3b558b1fc7b7724e892
+  languageName: node
+  linkType: hard
+
+"trim-canvas@npm:^0.1.0":
+  version: 0.1.2
+  resolution: "trim-canvas@npm:0.1.2"
+  checksum: 10c0/dddc2ac30f22f1e8b7f390fe2c688fa843e97e5d99610f08931776ce7ebf795c369809bb4b1fee6ff234151d2de450b03b49f9c8043d4639fc94ab30e695978b
   languageName: node
   linkType: hard
 
@@ -5899,6 +5984,15 @@ __metadata:
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
   checksum: 10c0/41a5bdd214df2f6c3ecf8622745e4a366c4adced864bc3c833739791aeeeb1838119af7daed4ba36428114b5c67dcda034a79c882e97e43c03e66a4dd7389942
+  languageName: node
+  linkType: hard
+
+"utrie@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "utrie@npm:1.0.2"
+  dependencies:
+    base64-arraybuffer: "npm:^1.0.2"
+  checksum: 10c0/eaffe645bd81a39e4bc3abb23df5895e9961dbdd49748ef3b173529e8b06ce9dd1163e9705d5309a1c61ee41ffcb825e2043bc0fd1659845ffbdf4b1515dfdb4
   languageName: node
   linkType: hard
 
