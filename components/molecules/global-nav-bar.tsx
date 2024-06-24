@@ -18,7 +18,7 @@ const GlobalNavBar = () => {
         </button>
       </h1>
       <div className="flex gap-3 items-center">
-        <button onClick={() => router.push("/learn")}>
+        <button onClick={() => router.push("/songs?tab=all")}>
           <PencilIcon className="w-6 h-6" />
         </button>
         <button>

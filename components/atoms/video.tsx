@@ -1,64 +1,67 @@
+import { Song } from "@/apis/dto/song";
 import cn from "@/lib/utils";
+import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import YouTube, { YouTubeProps } from "react-youtube";
-const startTimeIndex = [
-  4.8, 8.9, 9.9, 11.9, 13.9, 15.2, 17.4, 19.9, 21.9, 23.2, 25.5, 26.7, 28.7,
-  30.7, 32.7, 34.9, 37.4, 39.2, 40.7, 42.3, 44.3, 48.3, 51, 52.7, 56.3, 61.2,
-  64.9, 66.5, 70.7, 74.7, 78.7, 80.7, 82.7, 84.7, 86.7, 88.7, 89.9, 92.3, 96.3,
-  99, 100.7, 104.3, 107, 110.5, 114.5, 116.5, 118.4, 120.4, 122.7, 124.7, 126.7,
-  128.7, 130.7, 132.7, 134.7, 136.7, 138.7, 140.7, 144.4, 146.4, 150.4, 152.9,
-  154.9, 158.4, 160.8, 162.1, 162.8, 164.8, 165.8, 166.9, 168.3, 169.3, 170.3,
-  171.9, 173, 175,
-];
+import { Button } from "../ui/button";
+import { MessageCircleQuestionIcon, PauseIcon, PlayIcon } from "lucide-react";
+import QuestionBox from "@/app/(main-layout)/learn/_components/question-box";
+import Loading from "../molecules/loading";
 
-const engLyrics = [
-  "I'm like some kind of supernova",
-  "Watch out",
+type timeByLyricsType = {
+  lyric: string;
+  time: number;
+  engLyric: string;
+  question: string | null;
+}[];
 
-  "Look at me go",
-  "Have some fun",
-  "Core of light",
-  "So hot, hot",
-  "The door opens",
-  "Feel each other's presence",
-  "Like Discord",
-  "Who are you, you who resemble me",
-  "(Drop)",
-
-  "The event is approaching ah, oh, ayy",
-  "It's growing bigger ah, oh, ayy",
-  "That tick, that tick, tick bomb",
-  "That tick, that tick, tick bomb",
-  "No one dares to touch",
-  "That's what everyone says",
-  "Inside me now",
-  "Su-su-su-supernova",
-
-  "Nova",
-  "Can't stop hyperstellar",
-  "Searching for the origin",
-  "Bring the light of a dying star",
-  "Look at my universe I've created",
-  "Supernova",
-  "Ah Body Bang",
-  "Make it feel too right",
-];
-
-const lyric =
-  "I'm like some kind of Supernova\nWatch out\n\nLook at me go\n재미 좀 볼\n빛의 Core\nSo hot hot\n문이 열려\n서로의 존재를 느껴\n마치 Discord\n날 닮은 너 너 누구야\n(Drop)\n\n사건은 다가와 Ah Oh Ay\n거세게 커져가 Ah Oh Ay\nThat tick that tick tick bomb\nThat tick that tick tick bomb\n감히 건드리지 못할 걸\n(누구도 말이야)\n지금 내 안에선\nSu su su Supernova\n\nNova\nCan't stop hyperstellar\n원초 그걸 찾아\nBring the light of a dying star\n불러낸 내 우주를 봐 봐\nSupernova\n\nAh Body bang\nMake it feel too right\n\n휩쓸린 에너지 It's so special\n잔인한 Queen 이며 Scene 이자 종결\n이토록 거대한 내 안의 Explosion\n내 모든 세포 별로부터 만들어져\n(Under my control Ah)\n\n질문은 계속돼 Ah Oh Ay\n우린 어디서 왔나 Oh Ay\n느껴 내 안에선\nSu su su Supernova\n\nNova\nCan't stop hyperstellar\n원초 그걸 찾아\nBring the light of a dying star\n불러낸 내 우주를 봐 봐\nSupernova\n\n보이지 않는 힘으로\n네게 손 내밀어 볼까\n가능한 모든 가능성\n무한 속의 너를 만나\nIt's about to bang bang\nDon't forget my name\nSu su su Supernova\n\n사건은 다가와 Ah Oh Ay\n거세게 커져가 Ah Oh Ay\n질문은 계속돼 Ah Oh Ay\n우린 어디서 왔나 Oh Ay\n\n사건은 다가와 Ah Oh Ay\n거세게 커져가 Ah Oh Ay\nTell me, tell me, tell me Oh Ay\n우린 어디서 왔나 Oh Ay\n우린 어디서 왔나 Oh Ay\n\nNova\nCan't stop hyperstellar\n원초 그걸 찾아\nBring the light of a dying star\n불러낸 내 우주를 봐 봐\nSupernova\n\n사건은 다가와 Ah Oh Ay\n(Nu star)\n거세게 커져가 Ah Oh Ay\n질문은 계속돼 Ah Oh Ay\n(Nova)\n우린 어디서 왔나 Oh Ay\n\n사건은 다가와 Ah Oh Ay\n거세게 커져가 Ah Oh Ay\n질문은 계속돼 Ah Oh Ay\n(Nova)\nBring the light of a dying star\nSupernova";
-
-const Video = () => {
+const Video = ({ res }: { res: Song }) => {
   const playerRef = useRef<any>(null);
-  const lyricRefs = useRef<(HTMLButtonElement | null)[]>([]);
-
+  const lyricRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [lyricValue, setLyricValue] = useState<{
+    lyrics: string[];
+    timeByLyrics: timeByLyricsType;
+  }>({
+    lyrics: [],
+    timeByLyrics: [],
+  });
   const [currentTime, setCurrentTime] = useState(0);
-  const lyrics = lyric.split("\n").filter((lyric) => lyric !== "");
-  const timeByLyrics = lyrics.map((lyric, i) => ({
-    lyric: lyric,
-    time: startTimeIndex[i],
-    engLyric: engLyrics[i],
-  }));
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [questionValue, setQuestionValue] = useState<{
+    word: string | null;
+    isActive: boolean;
+  }>({
+    word: "",
+    isActive: false,
+  });
 
+  useEffect(() => {
+    const newLyrics = res.lyricKr.split("\\n").filter((lyric) => lyric !== "");
+    const engLyrics = res.lyricEn.split("\\n").filter((lyric) => lyric !== "");
+    const timeByLyrics: timeByLyricsType = newLyrics.map((lyric, i) => ({
+      lyric: lyric,
+      time: Number(res.startTime[i]),
+      engLyric: engLyrics[i],
+      question: null,
+    }));
+
+    // todo : res.questions 로 바꿔야함
+    const questions = [
+      { index: 3, word: "지금" },
+      { index: 11, word: "지금" },
+      { index: 22, word: "우리" },
+      { index: 24, word: "눈" },
+    ];
+
+    questions.forEach((question) => {
+      const { index, word } = question;
+      if (index >= 0 && index < timeByLyrics.length) {
+        timeByLyrics[index].question = word;
+      }
+    });
+
+    setLyricValue({ lyrics: newLyrics, timeByLyrics: timeByLyrics });
+  }, [res]);
   useEffect(() => {
     const interval = setInterval(() => {
       if (playerRef.current) {
@@ -76,31 +79,55 @@ const Video = () => {
   };
 
   const onPlayerStateChange: YouTubeProps["onStateChange"] = (event) => {
-    if (!event.data) {
-      const player = event.target;
-      player.playVideo();
+    if (event.data === 1) {
+      setIsPlaying(true);
+    } else if (event.data === 2) {
+      setIsPlaying(false);
     }
+    // if (!event.data) {
+    //   const player = event.target;
+    //   player.playVideo();
+    // }
   };
 
   const opts: YouTubeProps["opts"] = {
-    height: "390",
+    height: "0px",
     width: "100%",
-    playerVars: {},
+    playerVars: {
+      loop: false,
+      autoplay: false,
+      start: Number(res.startAt),
+      // rel: 0,
+    },
   };
 
   const handleSeek = (seconds: number) => {
     if (playerRef.current) {
       playerRef.current.seekTo(seconds, true);
-      playerRef.current.playVideo();
+      if (isPlaying) {
+        playerRef.current.pauseVideo();
+      } else {
+        playerRef.current.playVideo();
+      }
+    }
+  };
+
+  const togglePlayPause = () => {
+    if (!playerRef.current) return;
+    const player = playerRef.current;
+    if (isPlaying) {
+      player.pauseVideo();
+    } else {
+      player.playVideo();
     }
   };
 
   useEffect(() => {
-    const currentLyricIndex = timeByLyrics.findIndex(
+    const currentLyricIndex = lyricValue.timeByLyrics.findIndex(
       (timeByLyric, i) =>
         currentTime >= timeByLyric.time &&
-        (i === timeByLyrics.length - 1 ||
-          currentTime < timeByLyrics[i + 1].time),
+        (i === lyricValue.timeByLyrics.length - 1 ||
+          currentTime < lyricValue.timeByLyrics[i + 1].time),
     );
 
     if (
@@ -113,47 +140,85 @@ const Video = () => {
         block: "center",
       });
     }
-  }, [currentTime, timeByLyrics]);
-
-  useEffect(() => {
-    if (playerRef.current) {
-      console.log(playerRef.current.getCurrentTime());
-    }
-  }, [playerRef.current]);
+  }, [currentTime, lyricValue.timeByLyrics]);
 
   return (
-    <div className="mb-20 flex gap-1 w-full border">
-      <div className="w-[50%]">
-        <YouTube
-          videoId="phuiiNCxRMg"
-          opts={opts}
-          onReady={onPlayerReady}
-          onStateChange={onPlayerStateChange}
-        />
-      </div>
+    <div className="flex flex-col gap-8">
+      <div>
+        <Loading>
+          <div className="flex gap-1 w-full">
+            <div className="w-[30%] relative">
+              <div className="w-full h-full flex items-center justify-center flex-col gap-3 border">
+                <Image
+                  className="w-full h-full max-w-[180px] max-h-[180px]"
+                  src={`/png/song/${res.artist}/${res.imageUrl}.png`}
+                  alt={`${res.title}`}
+                  width={150}
+                  height={150}
+                />
+                <Button onClick={togglePlayPause}>
+                  {!isPlaying ? <PlayIcon /> : <PauseIcon />}
+                </Button>
+              </div>
+              <div className="absolute top-0 right-0 left-0">
+                <YouTube
+                  videoId={res.youtubeId}
+                  opts={opts}
+                  onReady={onPlayerReady}
+                  onStateChange={onPlayerStateChange}
+                />
+              </div>
+            </div>
 
-      <div className="flex bg-secondary/10 w-[50%] p-5 h-[400px] overflow-y-auto flex-col text-gray-400 gap-3 border">
-        {timeByLyrics.map((timeByLyric, i) => (
-          <button
-            ref={(el) => {
-              if (!el) return;
-              lyricRefs.current[i] = el;
-            }}
-            className={cn(
-              currentTime >= timeByLyric.time &&
-                (i === timeByLyrics.length - 1 ||
-                  currentTime < timeByLyrics[i + 1].time)
-                ? "bg-secondary/20 lyric-shadow rounded-lg py-10 text-black"
-                : "",
-            )}
-            onClick={() => handleSeek(timeByLyric.time)}
-            key={i}
-          >
-            <p> {timeByLyric.lyric}</p>
-            <p>{timeByLyric.engLyric}</p>
-          </button>
-        ))}
+            <div className="flex bg-secondary/10 w-[70%] p-5 h-[300px] overflow-y-auto flex-col text-gray-400 gap-3 border">
+              {lyricValue.timeByLyrics.map((timeByLyric, i) => (
+                <div
+                  ref={(el) => {
+                    if (!el) return;
+                    lyricRefs.current[i] = el;
+                  }}
+                  className={cn(
+                    currentTime >= timeByLyric.time &&
+                      (i === lyricValue.timeByLyrics.length - 1 ||
+                        currentTime < lyricValue.timeByLyrics[i + 1].time)
+                      ? "bg-secondary/20 lyric-shadow rounded-lg py-10 text-black"
+                      : "",
+                    "flex gap-2 items-start justify-center",
+                  )}
+                  onClick={() => handleSeek(timeByLyric.time)}
+                  key={i}
+                >
+                  <div>
+                    <p> {timeByLyric.lyric}</p>
+                    <p>{timeByLyric.engLyric}</p>
+                  </div>
+                  {timeByLyric.question && (
+                    <button
+                      className="w-9 h-9 -mt-4"
+                      onClick={() => {
+                        setQuestionValue({
+                          isActive: true,
+                          word: timeByLyric.question,
+                        });
+                      }}
+                    >
+                      <MessageCircleQuestionIcon className="w-8 h-8" />
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </Loading>
       </div>
+      {/* 문제 박스 */}
+      {questionValue.isActive && questionValue.word && (
+        <div className="relative w-full min-h-[300px] mb-10 p-5">
+          <Loading>
+            <QuestionBox word={questionValue.word} />
+          </Loading>
+        </div>
+      )}
     </div>
   );
 };
