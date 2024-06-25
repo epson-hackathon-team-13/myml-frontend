@@ -87,6 +87,7 @@ export default {
           "soft-orange": "hsl(var(--etc-soft-orange))",
           red: "hsl(var(--etc-red))",
           "soft-red": "hsl(var(--etc-soft-red))",
+          "soft-yellow": "hsl(var(--etc-soft-yellow))",
         },
         error: "hsl(var(--error))",
         success: "hsl(var(--success))",

@@ -33,7 +33,7 @@ const TodayExpressionCard = () => {
   };
 
   return (
-    <div className="py-5 bg-[#FFECCC]/50 rounded-md w-[50%] flex flex-col gap-3 px-6 font-medium">
+    <div className="py-5 bg-etc-soft-yellow/50 rounded-md w-[50%] flex flex-col gap-3 px-6 font-medium">
       <p className="text-18 ">Weekly Korean Quiz</p>
       <div className="py-4 px-3 bg-white rounded-md">
         <div className="flex gap-2">

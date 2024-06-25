@@ -4,7 +4,7 @@ import React from "react";
 const UserBox = () => {
   return (
     <div>
-      <div className="p-5 bg-secondary/20 flex justify-between items-center h-[230px] rounded-md">
+      <div className="p-5 bg-secondary/40 flex justify-between items-center h-[230px] rounded-md">
         <div className="h1-36-r">
           <p>안녕하세요. </p>
           <div className="flex gap-2 items-center">
