@@ -1,8 +1,9 @@
-import { WORD, WRITE } from "@/constants/mypage";
+import { EXAM, WORD, WRITE } from "@/constants/mypage";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 import WordBox from "./word-box";
 import WriteBox from "./wirte-box";
+import ExamBox from "./exam-box";
 
 const AllBox = () => {
   const tab = useSearchParams().get("tab");
@@ -10,6 +11,7 @@ const AllBox = () => {
     <div>
       {tab === WORD && <WordBox />}
       {tab === WRITE && <WriteBox />}
+      {tab === EXAM && <ExamBox />}
     </div>
   );
 };
