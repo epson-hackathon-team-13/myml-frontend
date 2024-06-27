@@ -150,12 +150,18 @@ const Video = ({ res }: { res: Song }) => {
             <div className="w-[30%] relative">
               <div className="w-full h-full flex items-center justify-center flex-col gap-3 border">
                 <Image
-                  className="w-full h-full max-w-[180px] max-h-[180px]"
+                  className="w-full h-full max-w-[140px] max-h-[140px]"
                   src={`/png/song/${res.artist}/${res.imageUrl}.png`}
                   alt={`${res.title}`}
-                  width={150}
-                  height={150}
+                  width={120}
+                  height={120}
                 />
+                <div className="flex flex-col items-center justify-center">
+                  <p className="h3-24-b">{res.title}</p>
+                  <p className="body1-16-r text-left text-black/50">
+                    {res.artist}
+                  </p>
+                </div>
                 <Button onClick={togglePlayPause}>
                   {!isPlaying ? <PlayIcon /> : <PauseIcon />}
                 </Button>
@@ -183,28 +189,30 @@ const Video = ({ res }: { res: Song }) => {
                         currentTime < lyricValue.timeByLyrics[i + 1].time)
                       ? "bg-white lyric-shadow rounded-lg py-10 text-black"
                       : "",
-                    "flex gap-2 items-start justify-center",
+                    "flex relative gap-2 items-start justify-center",
                   )}
                   onClick={() => handleSeek(timeByLyric.time)}
                   key={i}
                 >
-                  <div>
+                  <div className="flex items-center relative flex-col">
                     <p> {timeByLyric.lyric}</p>
                     <p>{timeByLyric.engLyric}</p>
+                    {timeByLyric.question && (
+                      <div className="absolute top-0 right-0 -mr-10">
+                        <button
+                          className=" h-9 px-2 -mt-4"
+                          onClick={() => {
+                            setQuestionValue({
+                              isActive: true,
+                              word: timeByLyric.question,
+                            });
+                          }}
+                        >
+                          <MessageCircleQuestionIcon className="w-8 h-8" />
+                        </button>
+                      </div>
+                    )}
                   </div>
-                  {timeByLyric.question && (
-                    <button
-                      className="w-9 h-9 -mt-4"
-                      onClick={() => {
-                        setQuestionValue({
-                          isActive: true,
-                          word: timeByLyric.question,
-                        });
-                      }}
-                    >
-                      <MessageCircleQuestionIcon className="w-8 h-8" />
-                    </button>
-                  )}
                 </div>
               ))}
             </div>
