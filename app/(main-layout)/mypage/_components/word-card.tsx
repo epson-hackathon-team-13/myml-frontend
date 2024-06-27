@@ -58,7 +58,7 @@ const WordCard: React.FC<WordCardProps> = ({ data }) => {
         </div>
         <button
           onClick={() => setModal(true)}
-          className="flex absolute bottom-0 right-0 mb-5 mr-4 bg-[#C6C2B8] body2-14-b px-3 py-1 rounded-full gap-1 items-center"
+          className="flex absolute top-0 right-0 mt-5 mr-4 bg-[#C6C2B8] body2-14-b px-3 py-1 rounded-full gap-1 items-center"
         >
           <p>
             <span>{data.title} - </span>
@@ -67,7 +67,7 @@ const WordCard: React.FC<WordCardProps> = ({ data }) => {
           <ChevronRight className="ml-auto -mr-1" />
         </button>
       </div>
-      <div className="text-[18px]">
+      <div className="body1-16-r web:text-[18px]">
         <p>{data.description}</p>
       </div>
     </div>

@@ -83,6 +83,7 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.2.5"],\
           ["prop-types", "npm:15.8.1"],\
           ["react", "npm:18.2.0"],\
+          ["react-confetti", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:6.1.0"],\
           ["react-datepicker", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:6.9.0"],\
           ["react-day-picker", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:8.10.1"],\
           ["react-dom", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:18.2.0"],\
@@ -3348,6 +3349,7 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.2.5"],\
           ["prop-types", "npm:15.8.1"],\
           ["react", "npm:18.2.0"],\
+          ["react-confetti", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:6.1.0"],\
           ["react-datepicker", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:6.9.0"],\
           ["react-day-picker", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:8.10.1"],\
           ["react-dom", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:18.2.0"],\
@@ -7104,6 +7106,29 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["react-confetti", [\
+      ["npm:6.1.0", {\
+        "packageLocation": "./.yarn/cache/react-confetti-npm-6.1.0-9b9e19a3c8-5b4eb23eef.zip/node_modules/react-confetti/",\
+        "packageDependencies": [\
+          ["react-confetti", "npm:6.1.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:6.1.0", {\
+        "packageLocation": "./.yarn/__virtual__/react-confetti-virtual-8ce60660bd/0/cache/react-confetti-npm-6.1.0-9b9e19a3c8-5b4eb23eef.zip/node_modules/react-confetti/",\
+        "packageDependencies": [\
+          ["react-confetti", "virtual:4a00e165583d012ae1f141dc6c692cedeaf299f2a936dea33d0ff6a5eb2e0917bf64cfd3a8f3299a6fbe5764dcefc05c946e942c2b483284b5d27d6fa24f18d7#npm:6.1.0"],\
+          ["@types/react", "npm:18.2.79"],\
+          ["react", "npm:18.2.0"],\
+          ["tween-functions", "npm:1.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["react-datepicker", [\
       ["npm:6.9.0", {\
         "packageLocation": "./.yarn/cache/react-datepicker-npm-6.9.0-6ab6046c52-aed97871a6.zip/node_modules/react-datepicker/",\
@@ -8180,6 +8205,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/tslib-npm-2.6.2-4fc8c068d9-e03a8a4271.zip/node_modules/tslib/",\
         "packageDependencies": [\
           ["tslib", "npm:2.6.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["tween-functions", [\
+      ["npm:1.2.0", {\
+        "packageLocation": "./.yarn/cache/tween-functions-npm-1.2.0-4c24ac77a5-7e59295b8b.zip/node_modules/tween-functions/",\
+        "packageDependencies": [\
+          ["tween-functions", "npm:1.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\

@@ -1,7 +1,12 @@
 import Link from "next/link";
 
 type EpsonModalProps = {
-  setModal: (data: { epson: boolean; email: boolean }) => void;
+  setModal: (data: {
+    epson: boolean;
+    email: boolean;
+    username: string;
+    iframe: boolean;
+  }) => void;
 };
 
 const EpsonModal: React.FC<EpsonModalProps> = ({ setModal }) => {
@@ -23,13 +28,27 @@ const EpsonModal: React.FC<EpsonModalProps> = ({ setModal }) => {
         </div>
         <div className="flex border-t">
           <button
-            onClick={() => setModal({ epson: false, email: false })}
+            onClick={() =>
+              setModal({
+                epson: false,
+                email: false,
+                username: "",
+                iframe: true,
+              })
+            }
             className="body1-16-r border-r w-full py-[13px] border-black/10 text-black/50"
           >
             No
           </button>
           <button
-            onClick={() => setModal({ epson: false, email: true })}
+            onClick={() =>
+              setModal({
+                epson: false,
+                email: true,
+                username: "",
+                iframe: false,
+              })
+            }
             className="body1-16-b w-full py-[13px] border-black/10 text-primary"
           >
             Yes
