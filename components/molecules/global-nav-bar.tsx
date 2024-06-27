@@ -10,7 +10,7 @@ const GlobalNavBar = () => {
     <div className="flex justify-between py-2">
       <h1>
         <button
-          className="text-primary py-4 px-4 rounded-md text-24 max-w-max"
+          className="text-primary py-4 rounded-md text-24 max-w-max"
           onClick={() => router.push("/")}
         >
           <span className="sr-only">Ball Again</span>

@@ -23,7 +23,7 @@ RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 const RadioGroupItem = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> & {
-    circleClassName: string;
+    circleClassName?: string;
   }
 >(({ className, circleClassName, ...props }, ref) => {
   return (
