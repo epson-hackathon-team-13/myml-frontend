@@ -4,8 +4,8 @@ import * as React from "react";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "lucide-react";
-
 import cn from "@/lib/utils";
+import Image from "next/image";
 
 const ToastProvider = ToastPrimitives.Provider;
 
@@ -16,7 +16,7 @@ const ToastViewport = React.forwardRef<
   <ToastPrimitives.Viewport
     ref={ref}
     className={cn(
-      "fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]",
+      "fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto mb-5 mr-2 sm:flex-col md:max-w-[550px]",
       className,
     )}
     {...props}
@@ -29,9 +29,9 @@ const toastVariants = cva(
   {
     variants: {
       variant: {
-        default: "border bg-background text-foreground",
+        default: "border bg-[#F3FAF7] text-[#03543F]",
         destructive:
-          "destructive group border-destructive bg-destructive text-destructive-foreground",
+          "destructive group border-destructive bg-[#FAF2F2] text-[#EB5757]",
       },
     },
     defaultVariants: {
@@ -102,13 +102,32 @@ ToastTitle.displayName = ToastPrimitives.Title.displayName;
 
 const ToastDescription = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Description>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Description>
->(({ className, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Description> & {
+    variant?: "default" | "destructive" | null;
+  }
+>(({ className, variant, ...props }, ref) => (
   <ToastPrimitives.Description
     ref={ref}
-    className={cn("text-sm opacity-90", className)}
+    className={cn("text-sm opacity-90 flex items-center space-x-2", className)}
     {...props}
-  />
+  >
+    {variant === "destructive" ? (
+      <Image
+        src={"/assets/svg/icons/x-circle.svg"}
+        alt="fail"
+        width={20}
+        height={20}
+      />
+    ) : (
+      <Image
+        src={"/assets/svg/icons/check-circle-green.svg"}
+        alt="success"
+        width={20}
+        height={20}
+      />
+    )}
+    <span>{props.children}</span>
+  </ToastPrimitives.Description>
 ));
 ToastDescription.displayName = ToastPrimitives.Description.displayName;
 

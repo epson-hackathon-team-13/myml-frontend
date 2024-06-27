@@ -1,18 +1,20 @@
 export type AdminType = "SUPER_ADMIN" | "ADMIN";
 
-export type Admin = {
-  id: string;
-  name: string;
-  adminType: AdminType;
+export type User = {
+  email: string;
+  language: string;
+  nickname: string;
+  username: string;
+  level: number;
 };
 
 export type UserStore = {
-  admin: Admin | null;
+  user: User | null;
   accessToken: string | null;
   refreshToken: string | null;
   setAccessToken: (token: string) => void;
   setRefreshToken: (token: string) => void;
-  setUser: (user: Admin) => void;
+  setUser: (user: User) => void;
   logout: (data: () => void) => void;
   getLoginStatus: () => boolean;
 };

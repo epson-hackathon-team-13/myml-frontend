@@ -215,7 +215,7 @@ const Video = ({ res }: { res: Song }) => {
       {questionValue.isActive && questionValue.word && (
         <div className="relative w-full min-h-[300px] mb-10 p-5">
           <Loading>
-            <QuestionBox word={questionValue.word} />
+            <QuestionBox songInfo={res} word={questionValue.word} />
           </Loading>
         </div>
       )}

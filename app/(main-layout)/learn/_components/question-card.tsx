@@ -1,27 +1,47 @@
+import { Song, SongWordPostReq } from "@/apis/dto/song";
 import { speak } from "@/components/home/today-expression-card";
 import { Button } from "@/components/ui/button";
+import useAddMyWord from "@/hook/song/use-add-my-word";
 import { EraserIcon, Volume2Icon } from "lucide-react";
 import { useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
 
 const QuestionCard = ({
+  songInfo,
   word,
   res,
 }: {
+  songInfo: Song;
   word: string;
   res: { transWord: string; transDfn: string };
 }) => {
-  const signRef = useRef<any>();
+  const signRefs = useRef<(SignatureCanvas | null)[]>([]);
+  const { onSubmit } = useAddMyWord();
 
   // 서명 지우기 핸들러
-  const handleClearSign = () => {
-    signRef.current.clear();
+  const handleClearSign = (index: number) => {
+    signRefs.current[index]?.clear();
   };
 
   // 문제 소리 듣기 핸들러
   const onClickTTS = (text: string) => {
     speechSynthesis.cancel();
     speak(text, window.speechSynthesis);
+  };
+
+  // 문제 추가 버튼 핸들러
+  const onClickAddWord = () => {
+    const newData: SongWordPostReq = {
+      word,
+      transWord: res.transWord,
+      description: res.transDfn,
+      musicId: Number(songInfo.id),
+      gender: songInfo.gender,
+      artist: songInfo.artist,
+      title: songInfo.title,
+      imageUrl: songInfo.imageUrl,
+    };
+    onSubmit({ ...newData });
   };
   return (
     <div className="flex flex-col gap-5 mb-10">
@@ -52,63 +72,36 @@ const QuestionCard = ({
         <p className="bg-[#FFECCC] rounded-md p-2 body1-16-b max-w-max">
           Writing 3 times
         </p>
-        <div className="flex gap-3 px-3">
-          <div className="flex bg-white relative w-[300px] items-center h-[150px] justify-center">
-            <p className="relative text-[60px] z-100 text-gray-100">{word}</p>
-
-            <SignatureCanvas
-              ref={signRef}
-              canvasProps={{
-                className:
-                  "w-full border border-gray-200 sigCanvas absolute top-0 left-0",
-              }}
-            />
-            <button
-              className="absolute top-0 right-0 mt-3 mr-3"
-              onClick={handleClearSign}
+        <div className="flex flex-col web:grid grid-cols-3 items-center gap-3 px-3">
+          {[0, 1, 2].map((index) => (
+            <div
+              key={index}
+              className="flex bg-white relative w-full items-center h-[150px] justify-center"
             >
-              <EraserIcon />
-            </button>
-          </div>
-          <div className="flex bg-white relative w-[300px] items-center h-[150px] justify-center">
-            {/* <p className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] transform text-gray-500 web:hidden"> */}
-            <p className="relative text-[60px] z-100 text-gray-100">{word}</p>
-
-            <SignatureCanvas
-              ref={signRef}
-              canvasProps={{
-                className:
-                  "w-full border border-gray-200 sigCanvas absolute top-0 left-0",
-              }}
-            />
-            <button
-              className="absolute top-0 right-0 mt-3 mr-3"
-              onClick={handleClearSign}
-            >
-              <EraserIcon />
-            </button>
-          </div>
-          <div className="flex bg-white relative w-[300px] items-center h-[150px] justify-center">
-            {/* <p className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] transform text-gray-500 web:hidden"> */}
-            <p className="relative text-[60px] z-100 text-gray-100">{word}</p>
-
-            <SignatureCanvas
-              ref={signRef}
-              canvasProps={{
-                className:
-                  "w-full border border-gray-200 sigCanvas absolute top-0 left-0",
-              }}
-            />
-            <button
-              className="absolute top-0 right-0 mt-3 mr-3"
-              onClick={handleClearSign}
-            >
-              <EraserIcon />
-            </button>
-          </div>
+              <p className="relative text-[70px] web:text-[85px] text-gray-100">
+                {word}
+              </p>
+              <SignatureCanvas
+                ref={(el: any) => (signRefs.current[index] = el)}
+                canvasProps={{
+                  className:
+                    "w-full border h-[150px] border-gray-200 sigCanvas absolute top-0 bottom-0 left-0",
+                }}
+              />
+              <button
+                className="absolute top-0 right-0 mt-3 mr-3"
+                onClick={() => handleClearSign(index)}
+              >
+                <EraserIcon />
+              </button>
+            </div>
+          ))}
         </div>
       </div>
-      <Button className="bg-primary/90 text-28 text-white ml-auto font-bold max-w-max py-8">
+      <Button
+        onClick={onClickAddWord}
+        className="bg-primary/90 text-28 text-white ml-auto font-bold max-w-max py-8"
+      >
         Add this word to My List
       </Button>
     </div>

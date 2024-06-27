@@ -1,4 +1,4 @@
-import { useGetSongList } from "@/hook/learn/use-get-song-list";
+import { useGetSongList } from "@/hook/song/use-get-song-list";
 import React from "react";
 import SongCard from "./song-card";
 

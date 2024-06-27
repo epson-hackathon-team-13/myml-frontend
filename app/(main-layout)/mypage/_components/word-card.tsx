@@ -1,7 +1,10 @@
 import { speak } from "@/components/home/today-expression-card";
+import Modal from "@/components/molecules/modal";
+import TwoButtonModal from "@/components/molecules/two-button-modal";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Volume2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 type WordCardProps = {
   data: {
@@ -16,7 +19,7 @@ type WordCardProps = {
 
 const WordCard: React.FC<WordCardProps> = ({ data }) => {
   const router = useRouter();
-
+  const [modal, setModal] = useState(false);
   // 문제 소리 듣기 핸들러
   const onClickTTS = (text: string) => {
     speechSynthesis.cancel();
@@ -27,8 +30,18 @@ const WordCard: React.FC<WordCardProps> = ({ data }) => {
   const onClickTitle = () => {
     router.push(`/learn/${data.musicId}`);
   };
+
   return (
-    <div className="flex bg-etc-soft-yellow/30 gap-3 flex-col justify-center px-5 h-[150px] rounded-md">
+    <div className="flex relative bg-etc-soft-yellow/30 gap-3 flex-col justify-center px-5 h-[150px] rounded-md">
+      {modal && (
+        <TwoButtonModal
+          title="Do you want to go review?"
+          secondBtnText="Yes"
+          firstBtnText="It's Okay"
+          onClickButton={onClickTitle}
+          setModal={setModal}
+        />
+      )}
       <div className="flex justify-between items-center">
         <div className="min-w-[145px] flex items-center gap-2 shrink-0">
           <p className="h2-28-b min-w-max flex gap-2">
@@ -44,14 +57,14 @@ const WordCard: React.FC<WordCardProps> = ({ data }) => {
           ></Button>
         </div>
         <button
-          onClick={onClickTitle}
-          className="flex bg-[#C6C2B8] body2-14-b px-3 py-1 rounded-full gap-1 items-center"
+          onClick={() => setModal(true)}
+          className="flex absolute bottom-0 right-0 mb-5 mr-4 bg-[#C6C2B8] body2-14-b px-3 py-1 rounded-full gap-1 items-center"
         >
           <p>
             <span>{data.title} - </span>
             <span>{data.artist}</span>
           </p>
-          <ChevronRight />
+          <ChevronRight className="ml-auto -mr-1" />
         </button>
       </div>
       <div className="text-[18px]">

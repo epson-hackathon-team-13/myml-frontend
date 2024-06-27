@@ -13,14 +13,21 @@ export type AuthLoginReq = {
   password: string;
 };
 
+export type AuthSignUpReq = {
+  email: string;
+  password: string;
+  username: string;
+  nickname: string;
+  language: string;
+  level: number;
+};
+
 export type AuthLoginRes = {
-  accessToken: string;
-  refreshToken: string;
-  admin: {
-    id: string;
-    name: string;
-    adminType: AdminType;
-  };
+  email: string;
+  language: string;
+  level: number;
+  nickname: string;
+  username: string;
 };
 
 export type AuthLogoutReq = {

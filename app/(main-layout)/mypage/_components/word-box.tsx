@@ -2,75 +2,18 @@ import { jsPDF } from "jspdf";
 import { GODIC } from "@/constants/font/GODIC";
 import { useEffect, useState } from "react";
 import WordCard from "./word-card";
+import { useGetMyWordList } from "@/hook/song/use-get-my-word";
+import { Button } from "@/components/ui/button";
+import EpsonModal from "./epson-modal";
+import EmailModal from "./email-modal";
 
 const WordBox = () => {
-  const data = [
-    {
-      word: "우리",
-      transWord: "we",
-      description:
-        "A pronoun used when the speaker refers to himself/herself and the listener or listeners, or a group of people including the speaker and listener or listeners.",
-      musicId: 2,
-      title: "Super shy",
-      artist: "New Jeans",
-    },
-    {
-      word: "너",
-      transWord: "you",
-      description: "A pronoun used when the speaker refers to him or her.",
-      musicId: 1,
-      title: "Supernova",
-      artist: "aespa",
-    },
-    {
-      word: "우리",
-      transWord: "we",
-      description:
-        "A pronoun used when the speaker refers to himself/herself and the listener or listeners, or a group of people including the speaker and listener or listeners.",
-      musicId: 2,
-      title: "Super shy",
-      artist: "New Jeans",
-    },
-    {
-      word: "우리",
-      transWord: "we",
-      description:
-        "A pronoun used when the speaker refers to himself/herself and the listener or listeners, or a group of people including the speaker and listener or listeners.",
-      musicId: 2,
-      title: "Super shy",
-      artist: "New Jeans",
-    },
-    {
-      word: "우리",
-      transWord: "we",
-      description:
-        "A pronoun used when the speaker refers to himself/herself and the listener or listeners, or a group of people including the speaker and listener or listeners.",
-      musicId: 2,
-      title: "Super shy",
-      artist: "New Jeans",
-    },
-    {
-      word: "우리",
-      transWord: "we",
-      description:
-        "A pronoun used when the speaker refers to himself/herself and the listener or listeners, or a group of people including the speaker and listener or listeners.",
-      musicId: 2,
-      title: "Super shy",
-      artist: "New Jeans",
-    },
-    {
-      word: "우리",
-      transWord: "we",
-      description:
-        "A pronoun used when the speaker refers to himself/herself and the listener or listeners, or a group of people including the speaker and listener or listeners.",
-      musicId: 2,
-      title: "Super shy",
-      artist: "New Jeans",
-    },
-  ];
+  const words = useGetMyWordList();
   const [pdfUrl, setPdfUrl] = useState("");
+  const [modal, setModal] = useState({ epson: false, email: false });
 
   useEffect(() => {
+    if (!words) return;
     const pdf = new jsPDF();
 
     // Add Korean font
@@ -81,7 +24,7 @@ const WordBox = () => {
     let yOffset = 20; // Initial y offset
 
     // Iterate through each word card data
-    data.forEach((word, index) => {
+    words.forEach((word, index) => {
       // Add a rectangle to mimic card background
       pdf.setFillColor(255, 245, 235); // Light beige color
       pdf.rect(10, yOffset, 190, 40, "F");
@@ -119,20 +62,31 @@ const WordBox = () => {
     const pdfBlob = pdf.output("blob");
     const blobUrl = URL.createObjectURL(pdfBlob);
     setPdfUrl(blobUrl);
-  }, []);
+  }, [words]);
 
-  useEffect(() => {
-    console.log(pdfUrl);
-  }, [pdfUrl]);
+  // 출력 버튼 클릭 핸들러
 
+  if (!words) return;
   return (
     <div className="flex flex-col gap-4 py-5">
+      {modal.epson && <EpsonModal setModal={setModal} />}
+      {modal.email && (
+        <EmailModal
+          onClickClose={() => setModal({ epson: false, email: false })}
+        />
+      )}
       <h1>My Words</h1>
       {/* {pdfUrl && (
         <iframe src={pdfUrl} width="500" height="500" title="PDF Preview" />
       )} */}
 
-      {data.map((word, i) => (
+      <Button
+        onClick={() => setModal({ epson: true, email: false })}
+        className="max-w-max px-5 ml-auto"
+      >
+        Print
+      </Button>
+      {words.map((word, i) => (
         <WordCard key={word.word + String(i)} data={word} />
       ))}
     </div>

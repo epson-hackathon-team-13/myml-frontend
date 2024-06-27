@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { Admin, SetState, UserStore } from "./types/user-store.types";
+import { User, SetState, UserStore } from "./types/user-store.types";
 import {
   getLocalStorageValue,
   setLocalStorageValue,
@@ -11,7 +11,7 @@ import { AuthLogoutReq } from "@/apis/dto/auth";
 import { postLogout } from "@/apis/auth";
 
 const store = (set: SetState<UserStore>): UserStore => ({
-  admin: getLocalStorageValue<Admin | null>("admin", null),
+  user: getLocalStorageValue<User | null>("user", null),
   accessToken: Cookies.get("access-token") || null,
   refreshToken: Cookies.get("refresh-token") || null,
 
@@ -30,9 +30,9 @@ const store = (set: SetState<UserStore>): UserStore => ({
     set({ refreshToken: token });
   },
   // 사용자 정보 로컬 스토리지에 저장
-  setUser: (admin) => {
-    setLocalStorageValue("admin", admin);
-    set({ admin });
+  setUser: (user) => {
+    setLocalStorageValue("user", user);
+    set({ user });
   },
 
   logout: async (handleSuccessLogout: () => void) => {
@@ -50,7 +50,7 @@ const store = (set: SetState<UserStore>): UserStore => ({
       localStorage.removeItem("admin");
       Cookies.set("access-token", "", { expires: 0 });
       Cookies.set("refresh-token", "", { expires: 0 });
-      set({ admin: null, accessToken: null, refreshToken: null });
+      set({ user: null, accessToken: null, refreshToken: null });
     } catch (error) {
       toast({
         variant: "destructive",
@@ -60,7 +60,7 @@ const store = (set: SetState<UserStore>): UserStore => ({
       localStorage.removeItem("admin");
       Cookies.set("access-token", "", { expires: 0 });
       Cookies.set("refresh-token", "", { expires: 0 });
-      set({ admin: null, accessToken: null, refreshToken: null });
+      set({ user: null, accessToken: null, refreshToken: null });
       handleSuccessLogout();
       console.error("로그아웃 에러", error);
     }

@@ -1,5 +1,6 @@
 import { Song } from "@/apis/dto/song";
 import { getSongList } from "@/apis/song";
+import { toast } from "@/components/ui/use-toast";
 import { wrapPromise } from "@/utils/wrap-promise";
 
 import { useEffect, useState } from "react";
@@ -12,6 +13,7 @@ export const useGetSongList = () => {
 
   useEffect(() => {
     const newRes = wrapPromise(getSongList());
+
     setRes(newRes);
   }, []);
 

@@ -6,7 +6,7 @@ import GlobalNavBar from "@/components/molecules/global-nav-bar";
 
 export default function Home() {
   return (
-    <main className="">
+    <main>
       <GlobalNavBar />
       <Banner />
       <div className="flex mt-2 gap-2">

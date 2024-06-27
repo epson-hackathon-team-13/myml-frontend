@@ -8,11 +8,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { postLogin } from "@/apis/auth";
 import { LoginFormSchema } from "@/constants/auth";
+import { useState } from "react";
 
 const useLoggedIn = () => {
   const searchParams = useSearchParams();
   const next = searchParams.get("next");
-
+  const [err, setErr] = useState(null);
   const { setUser, setAccessToken, setRefreshToken } = useUserStore();
 
   const form = useForm<z.infer<typeof LoginFormSchema>>({
@@ -21,33 +22,38 @@ const useLoggedIn = () => {
 
   const onSubmit = async (data: z.infer<typeof LoginFormSchema>) => {
     try {
-      const response = await postLogin({ ...data });
-      setAccessToken(response.data.accessToken);
-      setRefreshToken(response.data.refreshToken);
-      setUser(response.data.admin);
+      const res = await postLogin({ ...data });
+
+      const user = {
+        email: res.data.email,
+        language: res.data.language,
+        level: res.data.level,
+        nickname: res.data.nickname,
+        username: res.data.username,
+      };
+
+      setUser(user);
       if (next) {
         window.location.href = next;
         return;
       }
       window.location.href = `/`;
     } catch (error: any) {
-      console.log("eerr", error);
       if (error.response.status === 401) {
         toast({
           variant: "destructive",
-          title: "아이디 또는 비밀번호를 확인해주세요.",
-          description: `아이디 또는 비밀번호가 올바르지 않습니다.`,
+          title: "Invalid username or password. Please try again.",
         });
-        return;
+        return setErr(error.response.status);
       }
       toast({
         variant: "destructive",
-        title: "로그인 실패",
-        description: `로그인을 다시 시도해주세요. ${error}`,
+        title: "Please try again.",
       });
+      return setErr(error.response.status);
     }
   };
-  return { form, onSubmit };
+  return { form, onSubmit, err };
 };
 
 export default useLoggedIn;

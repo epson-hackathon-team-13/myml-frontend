@@ -22,7 +22,7 @@ export default {
     },
     extend: {
       screens: {
-        web: "550px",
+        web: "640px",
       },
       fontSize: {
         "12": ["12px", "1.6"],
