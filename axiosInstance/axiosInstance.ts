@@ -43,10 +43,7 @@ axiosInstance.interceptors.response.use(
     if (typeof window === "undefined") return;
     console.error("error", error);
     /*토큰 만료되는 경우 (refresh token시도) */
-    if (
-      error.response?.data?.statusCode === 401 &&
-      error?.response?.data?.message === "token-expired"
-    ) {
+    if (error.response?.data?.status === 401) {
       const { logout, refreshToken, setAccessToken } = useUserStore.getState();
 
       return refreshTokenAndRetry(error, {
@@ -56,7 +53,7 @@ axiosInstance.interceptors.response.use(
       });
     } else if (
       /*토큰이 무효한 경우 */
-      error.response?.data?.statusCode === 401 &&
+      error.response?.data?.status === 401 &&
       error?.response?.data?.message === "invalid-token"
     ) {
       Cookies.set("access-token", "", { expires: 0 });
@@ -64,14 +61,14 @@ axiosInstance.interceptors.response.use(
       return (window.location.href = "/");
     } else if (
       /*토큰이 변조되거나 읽을수 없는 경우 */
-      error.response?.data?.statusCode === 401 &&
+      error.response?.data?.status === 401 &&
       error?.response?.data?.message === "authentication error"
     ) {
       const { logout } = useUserStore.getState();
       logout(redirectToLogin);
     } else if (
       /*로그인 중복되는 경우 */
-      error.response?.data?.statusCode === 401 &&
+      error.response?.data?.status === 401 &&
       error?.response?.data?.message === "already logged in"
     ) {
       const { logout } = useUserStore.getState();
@@ -79,7 +76,7 @@ axiosInstance.interceptors.response.use(
       logout(redirectToLogin);
     } else if (
       /*유저를 찾을수 없을때*/
-      error.response?.data?.statusCode === 401 &&
+      error.response?.data?.status === 401 &&
       error?.response?.data?.message === "invalid-token-user"
     ) {
       const { logout } = useUserStore.getState();
@@ -87,7 +84,7 @@ axiosInstance.interceptors.response.use(
       logout(redirectToLogin);
     } else if (
       /*유저를 찾을수 없을때*/
-      error.response?.data?.statusCode === 401 &&
+      error.response?.data?.status === 401 &&
       (error?.response?.data?.message === "invalid-token-admin" ||
         error?.response?.data?.message === "invalid-token-type")
     ) {
@@ -96,7 +93,7 @@ axiosInstance.interceptors.response.use(
       logout(redirectToLogin);
     } else if (
       /*로그인 토큰을 안보냈을때*/
-      error.response?.data?.statusCode === 401 &&
+      error.response?.data?.status === 401 &&
       error?.response?.data?.message === "Login Required"
     ) {
       const currentUrlWithoutBase = window.location.href.replace(
