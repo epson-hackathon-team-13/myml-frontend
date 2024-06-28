@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import { MessageCircleQuestionIcon, PauseIcon, PlayIcon } from "lucide-react";
 import QuestionBox from "@/app/(main-layout)/learn/_components/question-box";
 import Loading from "../molecules/loading";
+import QuestionBlurBox from "@/app/(main-layout)/mypage/_components/question-blur-box";
 
 type timeByLyricsType = {
   lyric: string;
@@ -220,6 +221,11 @@ const Video = ({ res }: { res: Song }) => {
         </Loading>
       </div>
       {/* 문제 박스 */}
+      {!questionValue.isActive && (
+        <div className="relative w-full min-h-[300px] mb-10 p-5">
+          <QuestionBlurBox />
+        </div>
+      )}
       {questionValue.isActive && questionValue.word && (
         <div className="relative w-full min-h-[300px] mb-10 p-5">
           <Loading>
