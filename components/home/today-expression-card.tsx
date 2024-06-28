@@ -53,7 +53,7 @@ const TodayExpressionCard = () => {
   return (
     <div className="py-5 relative bg-etc-soft-yellow/50 rounded-md w-[50%] flex flex-col gap-3 px-6 font-medium">
       {isCorrect && (
-        <div className="absolute top-0 left-0 right-0">
+        <div className="fixed top-0 border left-0  right-0">
           <Confetti gravity={0.3} />
         </div>
       )}
