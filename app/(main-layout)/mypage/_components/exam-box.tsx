@@ -74,7 +74,7 @@ const ExamBox = () => {
       {submitted && (
         <GradeModal
           total={words.length}
-          grade={3}
+          grade={2}
           onClickClose={() => setSubmitted(false)}
         />
       )}
