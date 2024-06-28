@@ -8,11 +8,11 @@ import SignatureCanvas from "react-signature-canvas";
 
 const WriteBox = () => {
   const words = useGetMyWordList();
-  const signRefs = useRef<(SignatureCanvas | null)[]>([]);
+  const signRefs = useRef<(SignatureCanvas | null)[][]>([]);
 
   // 서명 지우기 핸들러
-  const handleClearSign = (index: number) => {
-    signRefs.current[index]?.clear();
+  const handleClearSign = (wordIndex: number, canvasIndex: number) => {
+    signRefs.current[wordIndex][canvasIndex]?.clear();
   };
 
   // 문제 소리 듣기 핸들러
@@ -21,7 +21,8 @@ const WriteBox = () => {
     speak(text, window.speechSynthesis);
   };
 
-  if (!words) return;
+  if (!words) return null;
+
   return (
     <div className="flex flex-col gap-4 py-5">
       <div className="flex justify-between items-center">
@@ -33,15 +34,15 @@ const WriteBox = () => {
             Writing 3 times
           </p>
           <div className="flex flex-col w-full items-center gap-8 px-3">
-            {words.map((word, i) => (
+            {words.map((word, wordIndex) => (
               <div
-                key={word.word + word.transWord + i}
+                key={word.word + word.transWord + wordIndex}
                 className="flex w-full flex-col gap-2"
               >
                 <p className="h3-24-b min-w-max flex gap-1">
-                  <span className="bg-white px-[2px]">{word.word}</span>
+                  <span className=" px-[2px]">{word.word}</span>
                   <span className="text-black/20">{`|`}</span>
-                  <span className="bg-white px-[2px]">{word.transWord}</span>
+                  <span className=" px-[2px]">{word.transWord}</span>
                   <Button
                     className="ml-1"
                     variant="outline"
@@ -51,16 +52,21 @@ const WriteBox = () => {
                   ></Button>
                 </p>
                 <div className="web:grid grid-cols-3 gap-3 flex flex-col">
-                  {[0, 1, 2].map((index) => (
+                  {[0, 1, 2].map((canvasIndex) => (
                     <div
-                      key={index}
+                      key={canvasIndex}
                       className="flex bg-white relative w-full items-center h-[150px] justify-center"
                     >
                       <p className="relative text-[70px] web:text-[85px] text-gray-100">
                         {word.word}
                       </p>
                       <ReactSignatureCanvas
-                        ref={(el: any) => (signRefs.current[index] = el)}
+                        ref={(el: any) => {
+                          if (!signRefs.current[wordIndex]) {
+                            signRefs.current[wordIndex] = [];
+                          }
+                          signRefs.current[wordIndex][canvasIndex] = el;
+                        }}
                         canvasProps={{
                           className:
                             "w-full border h-[150px] border-gray-200 sigCanvas absolute top-0 bottom-0 left-0",
@@ -68,7 +74,7 @@ const WriteBox = () => {
                       />
                       <button
                         className="absolute top-0 right-0 mt-3 mr-3"
-                        onClick={() => handleClearSign(index)}
+                        onClick={() => handleClearSign(wordIndex, canvasIndex)}
                       >
                         <EraserIcon />
                       </button>

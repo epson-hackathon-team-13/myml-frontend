@@ -36,13 +36,14 @@ const LoginForm = () => {
             />
             <div className="flex flex-col gap-1">
               <Button
+                type="button"
                 onClick={() => router.push("/sign-up")}
                 className="underline ml-auto"
                 variant={"link"}
               >
                 Sign up
               </Button>
-              <Button className="">Login</Button>
+              <Button>Login</Button>
             </div>
           </form>
           <div></div>

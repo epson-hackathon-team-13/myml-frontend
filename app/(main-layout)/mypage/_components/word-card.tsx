@@ -45,9 +45,9 @@ const WordCard: React.FC<WordCardProps> = ({ data }) => {
       <div className="flex justify-between items-center">
         <div className="min-w-[145px] flex items-center gap-2 shrink-0">
           <p className="h2-28-b min-w-max flex gap-2">
-            <span className="bg-white px-1">{data.word}</span>
+            <span className=" px-1">{data.word}</span>
             <span className="text-black/20">{`|`}</span>
-            <span className="bg-white px-1">{data.transWord}</span>
+            <span className=" px-1">{data.transWord}</span>
           </p>
           <Button
             variant="outline"

@@ -69,6 +69,7 @@ const ExamBox = () => {
       }
     });
   };
+
   return (
     <div className="flex flex-col gap-4 py-5">
       {submitted && (
@@ -92,25 +93,25 @@ const ExamBox = () => {
           <p className="body1-16-b bg-[#3E3A32] text-[#FFEFCA] px-2 max-w-max web:h3-24-b mb-3">
             Write the Korean alphabet of the description
           </p>
-          <div className="flex flex-col max-w-[400px] w-full items-center gap-8">
+          <div className="flex flex-col justify-between web:grid web:grid-cols-2 web:items-start w-full items-center gap-8">
             {words.map((word, i) => (
               <div
                 key={word.word + word.transWord + i}
                 className="flex w-full flex-col gap-2"
               >
-                <p className="body1-16-b flex gap-1">
+                <p className="body1-16-b w-full web:min-h-[90px] flex gap-1">
                   <span>{`Q${i + 1}. `}</span>
-                  <span className="bg-white px-[2px] whitespace-pre-line">
+                  <span className="px-[2px] whitespace-pre-line">
                     {word.description}
                   </span>
                 </p>
-                <div className="web:grid grid-cols-3 gap-3 flex flex-col">
-                  <div className="flex bg-white relative w-[100vw] max-w-[400px] items-center h-[150px] justify-center">
+                <div className="w-full gap-3 flex flex-col">
+                  <div className="flex bg-white relative w-full web:h-[200px] items-center h-[150px] justify-center">
                     <ReactSignatureCanvas
                       ref={(el: any) => (signRefs.current[i] = el)}
                       canvasProps={{
                         className:
-                          "w-full border h-[150px] border-gray-200 sigCanvas absolute top-0 bottom-0 left-0",
+                          "w-full border h-[150px] border-gray-200 sigCanvas web:h-[200px] absolute top-0 bottom-0 right-0 left-0",
                       }}
                     />
                     <button

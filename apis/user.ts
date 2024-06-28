@@ -10,3 +10,13 @@ export const postUserEmail = async (data: EpsonTokenReq) => {
     throw err;
   }
 };
+
+export const getMyInfo = async () => {
+  try {
+    const res = await axiosInstance.get(`/api/user/logged-in`);
+    return res.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
