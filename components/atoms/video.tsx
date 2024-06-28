@@ -195,7 +195,7 @@ const Video = ({ res }: { res: Song }) => {
                   key={i}
                 >
                   <div className="flex items-center relative flex-col">
-                    <p> {timeByLyric.lyric}</p>
+                    <p className="body1-16-b"> {timeByLyric.lyric}</p>
                     <p>{timeByLyric.engLyric}</p>
                     {timeByLyric.question && (
                       <div className="absolute top-0 right-0 -mr-10">

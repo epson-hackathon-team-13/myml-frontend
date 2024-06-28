@@ -29,7 +29,6 @@ export async function speak(textToRead: string, synth: SpeechSynthesis) {
 }
 const TodayExpressionCard = () => {
   const [isCorrect, setCorrect] = useState<boolean | null>(null);
-  const [isShake, setShake] = useState(false);
 
   // 단어 음성 출력 핸들러
   const onClickTTS = (text: string) => {

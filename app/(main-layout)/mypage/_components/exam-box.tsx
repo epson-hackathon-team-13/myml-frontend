@@ -1,3 +1,4 @@
+import Modal from "@/components/molecules/modal";
 import TwoButtonModal from "@/components/molecules/two-button-modal";
 import { Button } from "@/components/ui/button";
 import useAddOcrImg from "@/hook/ocr/use-add-ocr-img";
@@ -6,11 +7,13 @@ import { EraserIcon, Volume2Icon } from "lucide-react";
 import { useRef, useState } from "react";
 import ReactSignatureCanvas from "react-signature-canvas";
 import SignatureCanvas from "react-signature-canvas";
+import GradeModal from "./grade-modal";
 
 const ExamBox = () => {
   const words = useGetMyWordList();
   const signRefs = useRef<(SignatureCanvas | null)[]>([]);
   const [modal, setModal] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const { loading, onSubmit, success } = useAddOcrImg();
 
   // 서명 지우기 핸들러
@@ -59,6 +62,7 @@ const ExamBox = () => {
               await onSubmit(formData);
 
               setModal(false);
+              setSubmitted(true);
             });
           }
         };
@@ -67,6 +71,13 @@ const ExamBox = () => {
   };
   return (
     <div className="flex flex-col gap-4 py-5">
+      {submitted && (
+        <GradeModal
+          total={words.length}
+          grade={3}
+          onClickClose={() => setSubmitted(false)}
+        />
+      )}
       {modal && (
         <TwoButtonModal
           title="Do you want to submit?"
