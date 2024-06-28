@@ -3,9 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import useLoggedIn from "@/hook/auth/use-logged-in";
 import useSignUp from "@/hook/auth/use-sign-up";
+import { useEffect } from "react";
 
 const SignUpForm = () => {
   const { form, onSubmit } = useSignUp();
+
+  useEffect(() => {
+    form.setValue("language", "en");
+    form.setValue("level", 1);
+  }, []);
+
   return (
     <div className="max-w-[600px] h-[calc(100vh-82px)] flex items-center mx-auto">
       <div className="w-full">
@@ -38,7 +45,7 @@ const SignUpForm = () => {
               labelAttr={{
                 formType: "DEFAULT",
                 labelText: "nickname",
-                placeholder: "Enter 4 Character or more",
+                placeholder: "Enter your Korean nickname.",
                 isEssential: true,
               }}
             />
@@ -46,12 +53,12 @@ const SignUpForm = () => {
               formAttr={{ control: form.control, name: "username" }}
               labelAttr={{
                 formType: "DEFAULT",
-                labelText: "username",
-                placeholder: "Enter 4 Character or more",
+                labelText: "name",
+                placeholder: "Enter your name",
                 isEssential: true,
               }}
             />
-            <CustomFormField
+            {/* <CustomFormField
               formAttr={{ control: form.control, name: "language" }}
               labelAttr={{
                 formType: "DEFAULT",
@@ -69,7 +76,7 @@ const SignUpForm = () => {
                 placeholder: "Enter 4 Character or more",
                 isEssential: true,
               }}
-            />
+            /> */}
             <Button className="mt-4">sign up</Button>
           </form>
         </Form>

@@ -17,11 +17,20 @@ const useSignUp = () => {
 
   const form = useForm<z.infer<typeof SignUpFormSchema>>({
     resolver: zodResolver(SignUpFormSchema),
+    defaultValues: {
+      language: "en",
+      level: 1,
+    },
   });
 
   const onSubmit = async (data: z.infer<typeof SignUpFormSchema>) => {
+    const newData = {
+      ...data,
+      level: 1,
+      language: "en",
+    };
     try {
-      const response = await postSignUp({ ...data });
+      const response = await postSignUp({ ...newData });
       setAccessToken(response.data.accessToken);
       setRefreshToken(response.data.refreshToken);
       setUser(response.data.admin);
@@ -32,18 +41,10 @@ const useSignUp = () => {
       window.location.href = `/`;
     } catch (error: any) {
       console.log("eerr", error);
-      if (error.response.status === 401) {
-        toast({
-          variant: "destructive",
-          title: "아이디 또는 비밀번호를 확인해주세요.",
-          description: `아이디 또는 비밀번호가 올바르지 않습니다.`,
-        });
-        return;
-      }
+
       toast({
         variant: "destructive",
-        title: "로그인 실패",
-        description: `로그인을 다시 시도해주세요. ${error}`,
+        title: "Please Try again",
       });
     }
   };

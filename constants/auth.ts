@@ -22,13 +22,12 @@ export const SignUpFormSchema = z.object({
   nickname: z.string({ required_error: "Please enter a password." }).min(1, {
     message: "Please enter a password.",
   }),
-  language: z.string({ required_error: "Please enter a password." }).min(1, {
-    message: "Please enter a password.",
-  }),
-  level: z.preprocess(
-    (data) => Number(data),
-    z.number({ required_error: "Please enter a password." }).min(1, {
-      message: "Please enter a password.",
-    }),
-  ),
+  language: z.string(),
+  // level: z.preprocess(
+  //   (data) => Number(data),
+  //   z.number({ required_error: "Please enter a password." }).min(1, {
+  //     message: "Please enter a password.",
+  //   }),
+  // ),
+  level: z.number(),
 });

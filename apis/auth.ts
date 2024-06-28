@@ -10,7 +10,7 @@ export const postLogin = (requestData: AuthLoginReq) =>
   axiosInstance.post<AuthLoginRes>("/api/login", requestData);
 
 export const postLogout = (requestData: AuthLogoutReq) =>
-  axiosInstance.post("/admin/auth/logout", requestData);
+  axiosInstance.post("/api/admin/auth/logout", requestData);
 
 export const postSignUp = (requestData: AuthSignUpReq) =>
-  axiosInstance.post("/user/sign-up", requestData);
+  axiosInstance.post("/api/user/sign-up", requestData);
