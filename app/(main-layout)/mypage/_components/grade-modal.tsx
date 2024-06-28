@@ -26,7 +26,7 @@ const GradeModal: React.FC<ModalProps> = ({ total, grade, onClickClose }) => {
 
   return (
     <div className="fixed left-0 right-0 top-0 flex h-screen z-[9999] items-center justify-center bg-black bg-opacity-20">
-      <div className="absolute top-0 left-0 right-0">
+      <div className="fixed top-0  left-0 right-0 w-full h-screen">
         {isCorrect && <Confetti gravity={0.3} />}
       </div>
 
