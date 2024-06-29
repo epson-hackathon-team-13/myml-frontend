@@ -1,12 +1,13 @@
 "use client";
 
+import Loading from "@/components/molecules/loading";
 import LearningBox from "../_components/learning-box";
 
 const LearnPage = () => {
   return (
-    <div>
+    <Loading>
       <LearningBox />
-    </div>
+    </Loading>
   );
 };
 
