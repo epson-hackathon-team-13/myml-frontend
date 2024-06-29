@@ -38,16 +38,16 @@ const useAddEmail = (onSuccess: () => Promise<void>) => {
         setLoading(false);
       }
     } catch (error: any) {
-      if (error.response.status === 401) {
-        toast({
-          variant: "destructive",
-          title: "Invalid email. Please try again.",
-        });
-      }
-      toast({
-        variant: "destructive",
-        title: "Invalid email. Please try again.",
-      });
+      // if (error.response.status === 401) {
+      //   toast({
+      //     variant: "destructive",
+      //     title: "Invalid email. Please try again.",
+      //   });
+      // }
+      // toast({
+      //   variant: "destructive",
+      //   title: "Invalid email. Please try again.",
+      // });
       setSuccess(false);
     } finally {
       setLoading(false);
