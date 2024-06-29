@@ -1,5 +1,5 @@
 import Video from "@/components/atoms/video";
-import { useGetSongDetail } from "@/hook/learn/use-get-song-detail";
+import { useGetSongDetail } from "@/hook/song/use-get-song-detail";
 import { usePathname } from "next/navigation";
 
 const LearningBox = () => {

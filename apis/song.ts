@@ -1,10 +1,11 @@
 import axiosInstance from "@/axiosInstance/axiosInstance";
-import { Song } from "./dto/song";
+import { MySongWordRes, Song, SongWordPostReq } from "./dto/song";
 import axios from "axios";
+import { toast } from "@/components/ui/use-toast";
 
 export const getSongDetail = async (id: string): Promise<{ data: Song }> => {
   try {
-    const res = await axiosInstance.get<{ data: Song }>(`/music/${id}`);
+    const res = await axiosInstance.get<{ data: Song }>(`/api/music/${id}`);
     return res.data;
   } catch (err) {
     console.error(err);
@@ -14,7 +15,28 @@ export const getSongDetail = async (id: string): Promise<{ data: Song }> => {
 
 export const getSongList = async (): Promise<{ data: Song }> => {
   try {
-    const res = await axiosInstance.get<{ data: Song }>(`/music`);
+    const res = await axiosInstance.get<{ data: Song }>(`/api/music`);
+
+    return res.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export const postSongWord = async (data: SongWordPostReq) => {
+  try {
+    const res = await axiosInstance.post(`/api/word`, data);
+    return res.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export const getMyWordList = async (): Promise<{ data: MySongWordRes[] }> => {
+  try {
+    const res = await axiosInstance.get<{ data: MySongWordRes[] }>(`/api/word`);
     return res.data;
   } catch (err) {
     console.error(err);

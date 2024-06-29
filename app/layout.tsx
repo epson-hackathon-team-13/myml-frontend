@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { Suspense } from "react";
+import AlertMessage from "./(components)/alert-message";
+import { Toaster } from "@/components/ui/toaster";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -26,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="font-Pretendard max-w-[1200px] px-5 min-w-[375px] mx-auto">
+        <Toaster />
         {children}
       </body>
     </html>

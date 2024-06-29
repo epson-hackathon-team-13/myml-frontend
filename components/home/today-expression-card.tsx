@@ -1,32 +1,16 @@
 "use client";
 
 import { Volume2Icon } from "lucide-react";
-
 import { Button } from "../ui/button";
+import Confetti from "react-confetti";
+import { useEffect, useState } from "react";
 
+// 음성 속도와 음 높이
 const pitch = 0.9;
 const rate = 0.9;
-// async function populateVoiceList(synth: SpeechSynthesis) {
-//   try {
-//     const voices = await synth.getVoices().sort(function (a, b) {
-//       const aname = a.name.toUpperCase();
-//       const bname = b.name.toUpperCase();
-//       if (aname < bname) return -1;
-//       else if (aname === bname) return 0;
-//       else return +1;
-//     });
 
-//     return voices;
-//   } catch (error) {
-//     throw new Error("Failure retrieving voices");
-//   }
-// }
-
+// 음성 출력 함수
 export async function speak(textToRead: string, synth: SpeechSynthesis) {
-  //   if (speechSynthesis.onvoiceschanged !== undefined) {
-  //     speechSynthesis.onvoiceschanged = () => populateVoiceList;
-  //   }
-
   if (synth.speaking) {
     console.error("speechSynthesis.speaking");
     return;
@@ -44,13 +28,35 @@ export async function speak(textToRead: string, synth: SpeechSynthesis) {
   }
 }
 const TodayExpressionCard = () => {
-  // 문제 소리 듣기 핸들러
+  const [isCorrect, setCorrect] = useState<boolean | null>(null);
+
+  // 단어 음성 출력 핸들러
   const onClickTTS = (text: string) => {
     speechSynthesis.cancel();
     speak(text, window.speechSynthesis);
   };
+
+  // 컨페티 비활성화 업데이트
+  useEffect(() => {
+    const timer = () =>
+      setTimeout(() => {
+        setCorrect(null);
+      }, 3500);
+
+    if (isCorrect) {
+      timer();
+    }
+
+    return () => clearTimeout(timer());
+  }, [isCorrect]);
+
   return (
-    <div className="py-5 bg-[#FFECCC]/50 rounded-md w-[50%] flex flex-col gap-3 px-6 font-medium">
+    <div className="py-5 relative bg-etc-soft-yellow/50 rounded-md w-[50%] flex flex-col gap-3 px-6 font-medium">
+      {isCorrect && (
+        <div className="fixed top-0 border left-0  right-0">
+          <Confetti gravity={0.3} />
+        </div>
+      )}
       <p className="text-18 ">Weekly Korean Quiz</p>
       <div className="py-4 px-3 bg-white rounded-md">
         <div className="flex gap-2">
@@ -65,12 +71,21 @@ const TodayExpressionCard = () => {
         <span className="text-12">{`from <supernova - aespa>`}</span>
 
         <div className="flex mt-2 flex-col gap-2">
-          <Button variant={"secondary-outline"} className="text-black">
+          <Button
+            onClick={() => setCorrect(true)}
+            variant={"secondary-outline"}
+            className="text-black"
+          >
             A. Who are you?
           </Button>
-          <Button variant={"secondary-outline"} className="text-black">
+          <Button
+            onClick={() => setCorrect(false)}
+            variant={"secondary-outline"}
+            className={`text-black ${isCorrect === false ? "animate-shake" : ""}`}
+          >
             B. where are you?
           </Button>
+          {isCorrect === false && <p>try again!</p>}
         </div>
       </div>
     </div>

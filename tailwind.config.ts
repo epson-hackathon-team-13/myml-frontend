@@ -22,7 +22,7 @@ export default {
     },
     extend: {
       screens: {
-        web: "550px",
+        web: "640px",
       },
       fontSize: {
         "12": ["12px", "1.6"],
@@ -87,6 +87,7 @@ export default {
           "soft-orange": "hsl(var(--etc-soft-orange))",
           red: "hsl(var(--etc-red))",
           "soft-red": "hsl(var(--etc-soft-red))",
+          "soft-yellow": "hsl(var(--etc-soft-yellow))",
         },
         error: "hsl(var(--error))",
         success: "hsl(var(--success))",
@@ -106,8 +107,14 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        shake: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "10%, 30%, 50%, 70%, 90%": { transform: "translateX(-10px)" },
+          "20%, 40%, 60%, 80%": { transform: "translateX(10px)" },
+        },
       },
       animation: {
+        shake: "shake 0.5s ease-in-out",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

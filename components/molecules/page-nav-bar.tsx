@@ -29,7 +29,7 @@ const PageTab = ({ data, isTransparent, type, currentPath }: PageTabProps) => {
       {data.map((tab) => (
         <button
           onClick={() => router.push(`${originalPath}${tab.value}`)}
-          className={`h-[55px] text-[14px] px-2 ${currentTab === tab.value ? "text-blue-500 font-semibold border-b-2 border-blue-500" : "text-gray-500"}`}
+          className={`h-[55px] text-[14px] px-2 ${currentTab === tab.value ? "text-primary font-semibold border-b-2 border-primary" : "text-gray-500"}`}
           key={tab.text}
         >
           {tab.text}
